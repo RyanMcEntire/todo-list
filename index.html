@@ -1,12 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
-  <script src="main.js"></script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="header">
+      <div id="sidebar"></div>
+      <div id="taskView"></div>
+    </div>
+    <form id="newTaskForm">
+      <h2>Add a New Task</h2>
+      <input
+        type="text"
+        class="input"
+        id="project"
+        placeholder="Project Name"
+      />
+      <input
+        type="text"
+        class="input"
+        id="name"
+        placeholder="Task Name"
+      /><input
+        type="text"
+        class="input"
+        id="description"
+        placeholder="description"
+      /><input
+        type="number"
+        class="input"
+        id="due"
+        placeholder="Days Until Due"
+      /><input
+        type="number"
+        class="input"
+        id="priority"
+        placeholder="Priority (1-3)"
+      /><input type="text" class="input" id="notes" placeholder="Notes" />
+      <button type="submit">Submit</button>
+    </form>
+    <script src="main.js"></script>
+  </body>
 </html>
