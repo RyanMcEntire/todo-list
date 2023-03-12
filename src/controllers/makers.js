@@ -67,14 +67,13 @@ const getTaskFromInput = () => {
   return new Task(name, description, due, priority, notes);
 };
 
-
+let activeProject;
 
 const createDefaultProject = () => {
   const defaultProject = new Project('Nothing Personal');
   Manager.addProject(defaultProject);
+  activeProject = Manager.projectStorage[0];
 };
-
-let activeProject = Manager.projectStorage[0];  
 
 // const defaultProject = new Project('nothingPersonal');
 
