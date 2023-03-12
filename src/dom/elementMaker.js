@@ -15,12 +15,12 @@ export default class Element {
   }
 
   addChild(childElement) {
-    this.innerText = undefined;
+    this.text = undefined;
     this.children.push(childElement);
     return this;
   }
 
-  setInnerText(text) {
+  addText(text) {
     this.children = [];
     this.innerText = text;
     return this;
@@ -35,44 +35,38 @@ export default class Element {
   }
 
   build() {
-    const DOMthing = document.createElement(this.elementType);
+    const newElement = document.createElement(this.elementType);
 
     //  attributes
-    for (const [attribute, value] of Object.entries(attributes)) {
+    for (const [attribute, value] of Object.entries(this.attributes)) {
       if (typeof value === 'boolean') {
-        DOMthing.toggleAttribute(attribute, value);
+        newElement.toggleAttribute(attribute, value);
       } else {
-        DOMthing.setAttribute(attribute, value);
+        newElement.setAttribute(attribute, value); 
       }
     }
 
     //  event listeners
-    for (const [ev, listeners] of Object.entries(this.eventListeners)) {
-      listeners.forEach((listener) => {
-        DOMthing.addEventListener(ev, listener);
-      });
-    }
-
     for (const [eventType, listeners] of Object.entries(this.eventListeners)) {
       listeners.forEach((listener) => {
-        DOMthing.addEventListener(eventType, listener);
+        newElement.addEventListener(eventType, listener);
       });
     }
 
     // append children and text
     this.children.forEach((child) => {
-      DOMthing.appendChild(child.build());
+      newElement.appendChild(child.build());
     });
 
     if (this.text === undefined) {
       for (const child of this.children) {
-        DOMthing.appendChild(child.buildElement());
+        newElement.appendChild(child.build()); 
       }
     } else {
       const DOMtext = document.createTextNode(this.text);
-      DOMthing.appendChild(DOMtext);
+      newElement.appendChild(DOMtext);
     }
 
-    return DOMthing;
+    return newElement;
   }
 }
