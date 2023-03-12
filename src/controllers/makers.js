@@ -86,20 +86,18 @@ createDefaultProject();
 //   storage.push(newProject);
 // };
 
-const getProjectFromInput = () => {
-  const projectName = document.getElementById('projectName').value;
-  return new Project(projectName);
-};
+// const getProjectFromInput = () => {
+//   const projectName = document.getElementById('projectName').value;
+//   return new Project(projectName);
+// };
 
-const addProject = (e) => {
-  e.preventDefault();
-  const newProject = getProjectFromInput();
-  Manager.addProject(newProject);
-  // storage.push(newProject);
-  // const i = storage.length - 1;
-  const i = Manager.projectStorage.length - 1;
-  activeProject = Manager.projectStorage[i];
-};
+// const addProject = (e) => {
+//   e.preventDefault();
+//   const newProject = getProjectFromInput();
+//   // Manager.addProject(newProject);
+//   const i = Manager.projectStorage.length - 1;
+//   activeProject = Manager.projectStorage[i];
+// };
 
 const addTask = (e) => {
   e.preventDefault();
@@ -119,7 +117,7 @@ const consoleTableStorage = () => {
 const consoleTableButton = document.getElementById('consoleTable');
 // const newTaskForm = document.getElementById('newTaskForm');
 const taskProjectClickListener = () => {
-  newProjectForm.addEventListener('submit', addProject);
+  // newProjectForm.addEventListener('submit', addProject);
   newTaskForm.addEventListener('submit', addTask);
   consoleTableButton.addEventListener('click', consoleTableStorage);
 };

@@ -1,7 +1,6 @@
 import { newProjectLogistics } from '../controllers/makers';
 import Element from './elementMaker';
 
-
 function makeProjectForm() {
   return new Element('form')
     .addAttributes({ class: 'form', id: 'newProjectForm' })
@@ -28,7 +27,7 @@ function makeProjectForm() {
 }
 
 function makeProjectFormContainer() {
-  const projectForm = makeProjectForm(); 
+  const projectForm = makeProjectForm();
   const projectFormContainer = document.querySelector('.projectFormContainer');
   projectFormContainer.appendChild(projectForm);
 }

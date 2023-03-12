@@ -42,7 +42,7 @@ export default class Element {
       if (typeof value === 'boolean') {
         newElement.toggleAttribute(attribute, value);
       } else {
-        newElement.setAttribute(attribute, value); 
+        newElement.setAttribute(attribute, value);
       }
     }
 
@@ -57,7 +57,7 @@ export default class Element {
 
     if (this.text === undefined) {
       for (const child of this.children) {
-        newElement.appendChild(child.build()); 
+        newElement.appendChild(child.build());
       }
     } else {
       const DOMtext = document.createTextNode(this.text);
