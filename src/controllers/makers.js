@@ -3,7 +3,6 @@
 import selectors from '../dom/selectors';
 import Manager from './manager';
 
-
 selectors();
 
 const oldStorage = [];
@@ -54,72 +53,74 @@ class Project {
   }
 }
 
-const taskMaker = () => {
-  // check if function of the same name exists
-  function projectExists(name, storage) {
-    return storage.some((project) => project.name === name);
-  }
+// check if function of the same name exists
+function projectExists(name, storage) {
+  return storage.some((project) => project.name === name);
+}
 
-  const getTaskFromInput = () => {
-    const name = document.getElementById('taskName').value;
-    const description = document.getElementById('description').value;
-    const due = document.getElementById('due').value;
-    const priority = document.getElementById('priority').value;
-    const notes = document.getElementById('notes').value;
-    return new Task(name, description, due, priority, notes);
-  };
+const getTaskFromInput = () => {
+  const name = document.getElementById('taskName').value;
+  const description = document.getElementById('description').value;
+  const due = document.getElementById('due').value;
+  const priority = document.getElementById('priority').value;
+  const notes = document.getElementById('notes').value;
+  return new Task(name, description, due, priority, notes);
+};
 
-  let activeProject = Manager.projectStorage[0]; 
 
-  // const createDefaultProject = () => {
-  //   const newProject = new Project('Personal');
-  //   storage.push(newProject);
-  // };
 
-  const defaultProject = new Project('nothingPersonal');
-
-  // createDefaultProject();
-
+const createDefaultProject = () => {
+  const defaultProject = new Project('Nothing Personal');
   Manager.addProject(defaultProject);
+};
 
-  // const createNewProject = () => {
-  //   const newProject = new Project();
-  //   storage.push(newProject);
-  // };
+let activeProject = Manager.projectStorage[0];  
 
-  const getProjectFromInput = () => {
-    const name = document.getElementById('projectName').value;
-    return new Project(name);
-  };
+// const defaultProject = new Project('nothingPersonal');
 
-  const addProject = (e) => {
-    e.preventDefault();
-    const newProject = getProjectFromInput();
-    Manager.addProject(newProject);
-    // storage.push(newProject);
-    // const i = storage.length - 1;
-    const i = Manager.projectStorage.length - 1;
-    activeProject = Manager.projectStorage[i];
-  };
+createDefaultProject();
 
-  const addTask = (e) => {
-    e.preventDefault();
+// Manager.addProject(defaultProject);
 
-    const newTask = getTaskFromInput();
-    const currentProject = activeProject;
-    currentProject.addTaskToProject(newTask);
+// const createNewProject = () => {
+//   const newProject = new Project();
+//   storage.push(newProject);
+// };
 
-    // console.table(storage);
-  };
+const getProjectFromInput = () => {
+  const projectName = document.getElementById('projectName').value;
+  return new Project(projectName);
+};
 
-  const consoleTableStorage = () => {
-    // console.table(storage);
-    console.table(Manager.projectStorage);
-  };
+const addProject = (e) => {
+  e.preventDefault();
+  const newProject = getProjectFromInput();
+  Manager.addProject(newProject);
+  // storage.push(newProject);
+  // const i = storage.length - 1;
+  const i = Manager.projectStorage.length - 1;
+  activeProject = Manager.projectStorage[i];
+};
 
-  const consoleTableButton = document.getElementById('consoleTable');
-  // const newTaskForm = document.getElementById('newTaskForm');
-  newProjectForm.addEventListener('submit', addProject); 
+const addTask = (e) => {
+  e.preventDefault();
+
+  const newTask = getTaskFromInput();
+  const currentProject = activeProject;
+  currentProject.addTaskToProject(newTask);
+
+  // console.table(storage);
+};
+
+const consoleTableStorage = () => {
+  // console.table(storage);
+  console.table(Manager.projectStorage);
+};
+
+const consoleTableButton = document.getElementById('consoleTable');
+// const newTaskForm = document.getElementById('newTaskForm');
+const taskProjectClickListener = () => {
+  newProjectForm.addEventListener('submit', addProject);
   newTaskForm.addEventListener('submit', addTask);
   consoleTableButton.addEventListener('click', consoleTableStorage);
 };
@@ -131,4 +132,4 @@ function newProjectLogistics(e) {
   Manager.addProject(newProject);
 }
 
-export { taskMaker, Project, Task, newProjectLogistics };
+export { taskProjectClickListener, Project, Task, newProjectLogistics };

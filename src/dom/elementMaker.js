@@ -53,10 +53,7 @@ export default class Element {
       });
     }
 
-    // append children and text
-    this.children.forEach((child) => {
-      newElement.appendChild(child.build());
-    });
+    // append children or text
 
     if (this.text === undefined) {
       for (const child of this.children) {
