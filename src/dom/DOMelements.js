@@ -1,12 +1,11 @@
-import newProjectLogistics from '../storage/storage';
+import { newProjectLogistics } from '../controllers/makers';
 import Element from './elementMaker';
-import selectors from './selectors';
 
 
 function makeProjectForm() {
   return new Element('form')
     .addAttributes({ class: 'form', id: 'newProjectForm' })
-    // .addChild(new Element('h2').addText('New Project')) 
+    .addChild(new Element('h2').addText('New Project'))
     .addChild(
       new Element('input').addAttributes({
         type: 'text',

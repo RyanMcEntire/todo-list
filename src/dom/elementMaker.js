@@ -22,7 +22,7 @@ export default class Element {
 
   addText(text) {
     this.children = [];
-    this.innerText = text;
+    this.text = text;
     return this;
   }
 

@@ -2,7 +2,7 @@
 /* eslint-disable max-classes-per-file */
 import selectors from '../dom/selectors';
 import Manager from './manager';
-import newProjectLogistics from '../storage/storage';
+
 
 selectors();
 
@@ -124,4 +124,11 @@ const taskMaker = () => {
   consoleTableButton.addEventListener('click', consoleTableStorage);
 };
 
-export { taskMaker, Project, Task };
+function newProjectLogistics(e) {
+  e.preventDefault();
+  const newProjectInput = document.querySelector('#projectName').value;
+  const newProject = new Project(newProjectInput);
+  Manager.addProject(newProject);
+}
+
+export { taskMaker, Project, Task, newProjectLogistics };
