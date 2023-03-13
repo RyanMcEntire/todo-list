@@ -1,5 +1,5 @@
+/* eslint-disable prefer-destructuring */
 /* eslint-disable no-plusplus */
-/* eslint-disable max-classes-per-file */
 import selectors from '../dom/selectors';
 import Manager from '../model/manager';
 import Project from '../model/project';
@@ -9,8 +9,8 @@ selectors();
 
 const getTaskFromInput = () => {
   const name = document.getElementById('taskName').value;
-  const description = document.getElementById('description').value;
-  const due = document.getElementById('due').value;
+  const description = document.getElementById('taskDescription').value;
+  const due = document.getElementById('taskDue').value;
   const priority = document.querySelector(
     'input[name="priority"]:checked'
   ).value;
@@ -29,9 +29,8 @@ const createDefaultProject = () => {
 
 createDefaultProject();
 
-const addTask = (e) => {
+const newTaskLogistics = (e) => {
   e.preventDefault();
-
   const newTask = getTaskFromInput();
   const currentProject = activeProject;
   currentProject.addTaskToProject(newTask);
@@ -43,10 +42,11 @@ const consoleTableStorage = () => {
 
 const taskProjectClickListener = () => {
   const consoleTableButton = document.getElementById('consoleTable');
-  // newProjectForm.addEventListener('submit', addProject);
-  newTaskForm.addEventListener('submit', addTask);
+  // newTaskForm.addEventListener('submit', addTask);
   consoleTableButton.addEventListener('click', consoleTableStorage);
 };
+
+
 
 function newProjectLogistics(e) {
   e.preventDefault();
@@ -55,4 +55,5 @@ function newProjectLogistics(e) {
   Manager.addProject(newProject);
 }
 
-export { taskProjectClickListener, Project, Task, newProjectLogistics };
+
+export { taskProjectClickListener, Project, Task, newProjectLogistics, newTaskLogistics };

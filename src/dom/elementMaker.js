@@ -37,7 +37,6 @@ export default class Element {
   build() {
     const newElement = document.createElement(this.elementType);
 
-    //  attributes
     for (const [attribute, value] of Object.entries(this.attributes)) {
       if (typeof value === 'boolean') {
         newElement.toggleAttribute(attribute, value);
@@ -46,14 +45,11 @@ export default class Element {
       }
     }
 
-    //  event listeners
     for (const [eventType, listeners] of Object.entries(this.eventListeners)) {
       listeners.forEach((listener) => {
         newElement.addEventListener(eventType, listener);
       });
     }
-
-    // append children or text
 
     if (this.text === undefined) {
       for (const child of this.children) {
