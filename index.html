@@ -10,7 +10,7 @@
     <div class="header">
       <div class="sidebar">
         <div class="projectFormContainer">
-        <!-- <form id="newProjectForm">
+          <!-- <form id="newProjectForm">
           <h2>New Project</h2>
           <input
             class="input"
@@ -42,12 +42,17 @@
         class="input"
         id="due"
         placeholder="Days Until Due"
-      /><input
-        type="number"
-        class="input"
-        id="priority"
-        placeholder="Priority (1-3)"
-      /><input type="text" class="input" id="notes" placeholder="Notes" />
+      />
+      <div>
+        <h3>Priority</h3>
+        <input type="radio" id="high" name="priority" value="high" />
+        <label for="high">High</label><br />
+        <input type="radio" id="medium" name="priority" value="medium" />
+        <label for="medium">Medium</label><br />
+        <input type="radio" id="low" name="priority" value="low" />
+        <label for="low">Low</label>
+      </div>
+      <input type="text" class="input" id="notes" placeholder="Notes" />
       <button type="submit">Create</button>
     </form>
 
