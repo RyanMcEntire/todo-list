@@ -1,4 +1,4 @@
-import { newProjectLogistics } from '../controllers/makers';
+import { newProjectLogistics } from '../controllers/action-controller';
 import Element from './elementMaker';
 
 function makeProjectForm() {
