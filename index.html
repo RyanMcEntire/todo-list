@@ -7,8 +7,7 @@
     <title>Document</title>
   </head>
   <body>
-    <div class="header">
-      <div class="sidebar">
+    <div id="header" class="header">
         <div class="projectFormContainer">
           <!-- <form id="newProjectForm">
           <h2>New Project</h2>
@@ -20,12 +19,16 @@
           />
           <button type="submit">Create</button>
         </form> -->
+        
         </div>
       </div>
+      
       <div id="taskView"></div>
     </div>
+    <div id="sidebar" class="sidebar">
+    </div>
 
-    <form id="newTaskForm">
+    <!-- <form id="newTaskForm">
       <h2>Add a New Task</h2>
       <input
         type="text"
@@ -38,12 +41,11 @@
         id="description"
         placeholder="description"
       /><input
-        type="number"
+        type="date"
         class="input"
         id="due"
-        placeholder="Days Until Due"
       />
-      <div>
+      <fieldset>
         <h3>Priority</h3>
         <input type="radio" id="high" name="priority" value="high" />
         <label for="high">High</label><br />
@@ -51,10 +53,10 @@
         <label for="medium">Medium</label><br />
         <input type="radio" id="low" name="priority" value="low" />
         <label for="low">Low</label>
-      </div>
+      </fieldset>
       <input type="text" class="input" id="notes" placeholder="Notes" />
       <button type="submit">Create</button>
-    </form>
+    </form> -->
 
     <button id="consoleTable">console.table()</button>
 
