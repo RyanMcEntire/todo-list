@@ -6,11 +6,15 @@ export default class Storage {
   static storageBin = [];
 
   static saveManager(managerStuff) {
-    Storage.storageBin.push(managerStuff)
+    Storage.storageBin.push(managerStuff);
+    localStorage.setItem('manager', JSON.stringify(managerStuff));
   }
 
   static getManager() {
-    const manager = Object.assign(new Manager());
+    const manager = Object.assign(
+      new Manager(),
+      JSON.parse(localStorage.getItem('manager'))
+    );
     manager.setProjects(
       manager
         .getAllProjects()
@@ -20,7 +24,9 @@ export default class Storage {
       .getAllProjects()
       .forEach((project) =>
         project.setTasks(
-          project.getAllThisTasks().map((task) => Object.assign(new Task(), task))
+          project
+            .getAllThisTasks()
+            .map((task) => Object.assign(new Task(), task))
         )
       );
     return manager;
@@ -28,13 +34,13 @@ export default class Storage {
 
   static addProject(project) {
     const manager = Storage.getManager();
-    manager.addProject(project)
-    Storage.saveManager(manager)
+    manager.addProject(project);
+    Storage.saveManager(manager);
   }
 
   static addTask(projectName, task) {
     const manager = Storage.getManager();
-    manager.getProject(projectName).addTaskToProject(task)
-    Storage.saveManager(manager)
+    manager.getProject(projectName).addTaskToProject(task);
+    Storage.saveManager(manager);
   }
 }

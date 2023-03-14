@@ -6,4 +6,8 @@ export default class Task {
     this.priority = priority;
     this.notes = notes;
   }
+
+  getName() {
+    return this.name;
+  }
 }
