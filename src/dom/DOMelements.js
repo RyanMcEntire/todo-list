@@ -3,7 +3,7 @@ import {
   newProjectLogistics,
   newTaskLogistics,
 } from '../controllers/action-controller';
-import Element from './elementMaker';
+import Element from '../model/elementMaker';
 
 function makeProjectForm() {
   return new Element('form')
@@ -30,11 +30,7 @@ function makeProjectForm() {
     .build();
 }
 
-function makeProjectFormContainer() {
-  const projectForm = makeProjectForm();
-  const projectFormContainer = document.querySelector('.projectFormContainer');
-  projectFormContainer.appendChild(projectForm);
-}
+
 
 function createRadioInput(id, name, isChecked) {
   return new Element('div')
@@ -114,10 +110,16 @@ function makeTaskForm() {
     .build();
 }
 
-function makeTaskFormContainer() {
+function appendTaskForm() {
   const taskForm = makeTaskForm();
   const header = document.getElementById('header');
   header.appendChild(taskForm);
 }
 
-export { makeProjectFormContainer, makeTaskFormContainer };
+function appendProjectForm() {
+  const projectForm = makeProjectForm();
+  const projectFormContainer = document.querySelector('.projectFormContainer');
+  projectFormContainer.appendChild(projectForm);
+}
+
+export { appendProjectForm, appendTaskForm };

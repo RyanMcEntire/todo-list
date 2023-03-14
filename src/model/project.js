@@ -1,17 +1,18 @@
 /* eslint-disable no-plusplus */
 class Project {
-  constructor(name) {
-    this.projectName = name;
+  constructor(projectName) {
+    this.projectName = projectName;
     this.tasks = [];
   }
 
   addTaskToProject(newTask) {
-    if (this.tasks.find((task) => task.getName() === newTask.name)) return;
+    const { taskName } = newTask.name
+    if (this.tasks.find((task) => task.getName() === taskName)) return;
     this.tasks.push(newTask);
   }
 
   deleteTaskFromProject(taskName) {
-    for (let i = 0; i < this.tasks.length; i++) {
+    for (const i = 0; i < this.tasks.length; i++) {
       if (this.tasks[i].name === taskName) {
         this.tasks.splice(i, 1);
         break;
@@ -27,17 +28,13 @@ class Project {
     return this.tasks.some((task) => task.id === newTask.id);
   }
 
-  getName() {
-    return this.projectName;
-  }
+  getName = () => this.projectName;
 
   SetNameOfProject(newName) {
     this.projectName = newName;
   }
 
-  getAllThisTasks() {
-    return this.tasks;
-  }
+  getAllThisTasks = () => this.tasks;
 }
 
 export default Project;

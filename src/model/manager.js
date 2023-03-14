@@ -8,10 +8,9 @@ import Task from "./task";
   }
 
   addProject(newProject) {
+    const { projectName } = newProject;
     if (
-      this.projectStorage.find(
-        (project) => project.projectName === newProject.projectName
-      )
+      this.projectStorage.find((project) => project.projectName === projectName)
     )
       return;
     this.projectStorage.push(newProject);
@@ -22,6 +21,9 @@ import Task from "./task";
   }
 
   getProject(projectName) {
+    if (!projectName) {
+      // error code thingy displayError('project)
+    }
     return this.projectStorage.find(
       (project) => project.getName() === projectName
     );
