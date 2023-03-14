@@ -17,10 +17,6 @@ import Task from "./task";
     this.projectStorage.push(newProject);
   }
 
-  // addProject(newProject) {
-  //   return this.projectStorage.push(newProject); 
-  // }
-
   getAllProjects() {
     return this.projectStorage;
   }
