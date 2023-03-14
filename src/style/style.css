@@ -1,6 +1,6 @@
 body {
-  background-color: red;
-  height: 50vh;
+  background-color: rgb(201, 63, 74);
+  height: 60vh; 
   padding: 1rem;
 }
 
@@ -11,4 +11,3 @@ form {
 
 h2 {
 }
-

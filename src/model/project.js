@@ -1,10 +1,12 @@
-export default class Project {
+/* eslint-disable no-plusplus */
+class Project {
   constructor(name) {
     this.projectName = name;
     this.tasks = [];
   }
 
   addTaskToProject(newTask) {
+    if (this.tasks.find((task) => task.getName() === newTask.name)) return;
     this.tasks.push(newTask);
   }
 
@@ -17,19 +19,25 @@ export default class Project {
     }
   }
 
+  setTasks(tasks) {
+    this.tasks = tasks;
+  }
+
   hasTask(newTask) {
     return this.tasks.some((task) => task.id === newTask.id);
   }
 
-  get projectName() {
-    return this.name;
+  getName() {
+    return this.projectName;
   }
 
-  set projectName(newName) {
-    this.name = newName;
+  SetNameOfProject(newName) {
+    this.projectName = newName;
   }
 
-  get thisTasks() {
+  getAllThisTasks() {
     return this.tasks;
   }
 }
+
+export default Project;

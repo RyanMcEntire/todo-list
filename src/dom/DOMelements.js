@@ -41,8 +41,8 @@ function createRadioInput(id, name, isChecked) {
     .addChild(
       new Element('input').addAttributes({
         type: 'radio',
-        id: id,
-        name: name,
+        id,
+        name,
         value: id,
         checked: isChecked,
       })

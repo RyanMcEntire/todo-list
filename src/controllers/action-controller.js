@@ -1,11 +1,9 @@
 /* eslint-disable prefer-destructuring */
 /* eslint-disable no-plusplus */
-import selectors from '../dom/selectors';
+import Storage from '../model/storage';
 import Manager from '../model/manager';
 import Project from '../model/project';
 import Task from '../model/task';
-
-selectors();
 
 const getTaskFromInput = () => {
   const name = document.getElementById('taskName').value;
@@ -19,25 +17,30 @@ const getTaskFromInput = () => {
   return new Task(name, description, due, priority, notes);
 };
 
-let activeProject;
+const activeProject = Storage.getManager().getProject('default'); 
 
-const createDefaultProject = () => {
-  const defaultProject = new Project('Nothing Personal');
-  Manager.addProject(defaultProject);
-  activeProject = Manager.projectStorage[0];
-};
+// const createDefaultProject = () => {
+//   const defaultProject = new Project('Nothing Personal');
+//   Manager.addProject(defaultProject);
+//   activeProject = Manager.getProject('Nothing Personal');
+// };
 
-createDefaultProject();
+// const createDefaultProject = () => {
+//   Manager.addProject(new Project('Nothing Personal'));
+//   activeProject = Manager.getProject('Nothing Personal');
+// };
+
+// createDefaultProject();
 
 const newTaskLogistics = (e) => {
   e.preventDefault();
   const newTask = getTaskFromInput();
   const currentProject = activeProject;
-  currentProject.addTaskToProject(newTask);
+  Storage.addTask('default', newTask);
 };
 
 const consoleTableStorage = () => {
-  console.table(Manager.projectStorage);
+  console.table(Storage.storageBin); 
 };
 
 const taskProjectClickListener = () => {
@@ -46,14 +49,11 @@ const taskProjectClickListener = () => {
   consoleTableButton.addEventListener('click', consoleTableStorage);
 };
 
-
-
 function newProjectLogistics(e) {
   e.preventDefault();
-  const newProjectInput = document.querySelector('#projectName').value;
-  const newProject = new Project(newProjectInput);
-  Manager.addProject(newProject);
+  const newProjectName = document.querySelector('#projectName').value;
+  
+  Storage.addProject( new Project(newProjectName));
 }
 
-
-export { taskProjectClickListener, Project, Task, newProjectLogistics, newTaskLogistics };
+export { taskProjectClickListener, newProjectLogistics, newTaskLogistics };
