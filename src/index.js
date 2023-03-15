@@ -8,4 +8,3 @@ import { taskProjectClickListener } from './controllers/action-controller';
 
 appendProjectForm();
 appendTaskForm();
-taskProjectClickListener();

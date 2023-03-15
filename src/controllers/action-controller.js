@@ -4,6 +4,7 @@ import Storage from '../model/storage';
 import Manager from '../model/manager';
 import Project from '../model/project';
 import Task from '../model/task';
+import createEventListener from '../model/utilities';
 
 const getTaskFromInput = () => {
   const name = document.getElementById('taskName').value;
@@ -12,9 +13,9 @@ const getTaskFromInput = () => {
   const priority = document.querySelector(
     'input[name="priority"]:checked'
   ).value;
-  const notes = document.getElementById('notes').value;
+  const completed = document.getElementById('completed').value;
 
-  return new Task(name, description, due, priority, notes);
+  return new Task(name, description, due, priority, completed);
 };
 
 const newTaskLogistics = (e) => {

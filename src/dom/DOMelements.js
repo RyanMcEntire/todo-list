@@ -2,6 +2,7 @@ import { endOfToday, format } from 'date-fns';
 import {
   newProjectLogistics,
   newTaskLogistics,
+  taskProjectClickListener,
 } from '../controllers/action-controller';
 import Element from '../model/elementMaker';
 
@@ -30,8 +31,6 @@ function makeProjectForm() {
     .build();
 }
 
-
-
 function createRadioInput(id, name, isChecked) {
   return new Element('div')
     .addChild(
@@ -49,54 +48,85 @@ function createRadioInput(id, name, isChecked) {
 function makeTaskForm() {
   return new Element('form')
     .addAttributes({
-      class: 'form',
+      class: 'form newTaskForm',
       id: 'newTaskForm',
     })
-    .addChild(new Element('h2').addText('New Task'))
     .addChild(
-      new Element('input').addAttributes({
-        type: 'text',
-        class: 'input',
-        id: 'taskName',
-        placeholder: 'Task Name',
-      })
+      new Element('div')
+        .addAttributes({ class: 'taskTextFields' })
+        .addChild(
+          new Element('div')
+            .addAttributes({
+              class: 'taskDescriptionArea',
+            })
+            .addChild(
+              new Element('input').addAttributes({
+                type: 'text',
+                class: 'input',
+                id: 'taskName',
+                placeholder: 'Task Name',
+              })
+            )
+            .addChild(
+              new Element('textArea').addAttributes({
+                name: 'description',
+                class: 'input',
+                id: 'taskDescription',
+                placeholder: 'Task Description',
+                maxlength: '400',
+              })
+            )
+        )
+        .addChild(
+          new Element('div')
+            .addAttributes({
+              class: 'rightSideTaskFormArea',
+            })
+            .addChild(
+              new Element('div')
+                .addAttributes({
+                  class: 'dateAndPriorityArea',
+                })
+                .addChild(
+                  new Element('input').addAttributes({
+                    type: 'date',
+                    class: 'input',
+                    id: 'taskDue',
+                  })
+                )
+                .addChild(
+                  new Element('fieldset')
+                    .addAttributes({
+                      class: 'priorityFieldSet',
+                    })
+                    .addChild(new Element('legend').addText('Priority'))
+                    .addChild(createRadioInput('high', 'priority', false))
+                    .addChild(createRadioInput('normal', 'priority', false))
+                    .addChild(createRadioInput('low', 'priority', true))
+                )
+            )
+
+            .addChild(
+              new Element('fieldset')
+                .addAttributes({
+                  class: 'completed',
+                })
+                .addChild(new Element('legend').addText('completed'))
+                .addChild(
+                  new Element('div').addChild(
+                    new Element('input').addAttributes({
+                      type: 'checkbox',
+                      id: 'completed',
+                      name: 'completed',
+                      value: 'completed',
+                      checked: false,
+                    })
+                  )
+                )
+            )
+        )
     )
-    .addChild(
-      new Element('input').addAttributes({
-        type: 'text',
-        class: 'input',
-        id: 'taskDescription',
-        placeholder: 'Task Description',
-      })
-    )
-    .addChild(
-      new Element('input').addAttributes({
-        type: 'date',
-        class: 'input',
-        id: 'taskDue',
-      })
-    )
-    .addChild(
-      new Element('fieldset')
-        .addChild(new Element('legend').addText('Priority'))
-        .addChild(createRadioInput('high', 'priority', false))
-        .addChild(createRadioInput('normal', 'priority', false))
-        .addChild(createRadioInput('low', 'priority', true))
-    )
-    .addChild(
-      new Element('fieldset')
-        .addChild(new Element('legend').addText('completed'))
-        .addChild(createRadioInput('yes', 'completed', false))
-        .addChild(createRadioInput('no', 'completed', true))
-    )
-    .addChild(
-      new Element('input').addAttributes({
-        type: 'text',
-        class: 'input',
-        id: 'notes',
-        placeholder: 'notes',
-      })
-    )
+
     .addChild(
       new Element('button')
         .addAttributes({
@@ -112,14 +142,16 @@ function makeTaskForm() {
 
 function appendTaskForm() {
   const taskForm = makeTaskForm();
-  const header = document.getElementById('header');
-  header.appendChild(taskForm);
+  const parentElement = document.getElementById('taskFormContainer');
+  parentElement.appendChild(taskForm);
 }
 
 function appendProjectForm() {
   const projectForm = makeProjectForm();
-  const projectFormContainer = document.querySelector('.projectFormContainer');
-  projectFormContainer.appendChild(projectForm);
+  const parentElement = document.getElementById('content');
+  parentElement.appendChild(projectForm);
 }
+
+taskProjectClickListener();
 
 export { appendProjectForm, appendTaskForm };
