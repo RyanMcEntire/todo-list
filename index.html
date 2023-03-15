@@ -10,16 +10,27 @@
     <div id="header" class="header">
       <div class="projectFormContainer"></div>
     </div>
-    <div class="content">
+    <div id="content" class="content">
       <div id="sidebar" class="sidebar">
-        <div id="newProject">
-          <p>New Project</p>
-          <div id="newProjectButton">+</div>
+        <div class="sortManagerContainer"></div>
+        <div class="borderDiv"></div>
+        <div class="newProjectFooter">
+          <div class="createNewProjectLabel">New Project</div>
+          <div id="callProjectModal" class="callNewProjectModal">+</div>
         </div>
       </div>
-      <div id="taskView"></div>
-      
-      <button id="consoleTable">console.table()</button>
+      <div id="contentArea" class="contentArea">
+        <div class="taskInfoArea">
+          <h2>Will Be Dynamic</h2>
+          <button>New Task +</button>
+        </div>
+
+        <div id="taskView"></div>
+        <div class="borderDiv"></div>
+
+        <div id="taskFormContainer"></div>
+        <button id="consoleTable">console.table()</button>
+      </div>
     </div>
 
     <script src="main.js"></script>
