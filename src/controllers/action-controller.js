@@ -27,19 +27,11 @@ function newProjectLogistics(e) {
   const newProjectName = document.querySelector('#projectName').value;
 
   Storage.addProject(new Project(newProjectName));
+  document.getElementById('newProjectForm').remove();
 }
 
-const consoleTableStorage = () => {
-  console.table(Storage.getManager().getAllProjects());
-};
-
-const taskProjectClickListener = () => {
-  const consoleTableButton = document.getElementById('consoleTable');
-  consoleTableButton.addEventListener('click', consoleTableStorage);
-};
 
 
-taskProjectClickListener();
 
 
-export { taskProjectClickListener, newProjectLogistics, newTaskLogistics };
+export { newProjectLogistics, newTaskLogistics };

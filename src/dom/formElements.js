@@ -1,6 +1,8 @@
-import { newProjectLogistics, newTaskLogistics } from '../controllers/action-controller';
+import {
+  newProjectLogistics,
+  newTaskLogistics,
+} from '../controllers/action-controller';
 import Element from '../model/elementMaker';
-
 
 function makeProjectForm() {
   return new Element('form')
@@ -136,6 +138,4 @@ function makeTaskForm() {
     .build();
 }
 
-
-
-export { makeProjectForm, makeTaskForm } ;
+export { makeProjectForm, makeTaskForm };

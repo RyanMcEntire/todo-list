@@ -1,9 +1,9 @@
-import Project from "./project";
+import Project from './project';
 
- class Manager {
+class Manager {
   constructor() {
-    this.projectStorage = []; 
-    this.projectStorage.push(new Project('default'))
+    this.projectStorage = [];
+    this.projectStorage.push(new Project('default'));
   }
 
   addProject(newProject) {
@@ -27,9 +27,9 @@ import Project from "./project";
       (project) => project.getName() === projectName
     );
   }
-  
+
   setProjects(projects) {
-    this.projectStorage = projects
+    this.projectStorage = projects;
   }
 
   contains(projectName) {
@@ -39,4 +39,4 @@ import Project from "./project";
   }
 }
 
-export default Manager
+export default Manager;

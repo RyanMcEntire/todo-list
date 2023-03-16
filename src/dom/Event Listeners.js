@@ -1,4 +1,4 @@
-import { makeProjectForm, makeTaskForm } from './DOMelements';
+import { makeProjectForm, makeTaskForm } from './formElements';
 
 function appendProjectForm() {
   const projectForm = makeProjectForm();
@@ -12,11 +12,22 @@ function appendTaskForm() {
   parentElement.appendChild(taskForm);
 }
 
+
+function appendElement(parent, element) {
+  const parentElement = document.getElementById(parent);
+  parentElement.appendChild(element);
+}
+
+const consoleTableStorage = () => {
+  console.table(Storage.getManager().getAllProjects());
+};
+
 const processClick = (e) => {
   const eventID = e.target.id;
   const actions = {
-    callProjectModal: appendProjectForm,
-    newTask: appendTaskForm,
+    callNewProjectModal: appendProjectForm,
+    newTask: appendElement('taskFormContainer', makeTaskForm()),
+    consoleTable: consoleTableStorage,
   };
   if (actions[eventID]) {
     actions[eventID]();
@@ -28,4 +39,5 @@ const createEventListener = (id) => {
   element.addEventListener('click', (e) => processClick(e));
 };
 
-export default createEventListener
+// export default createEventListener;
+export { processClick, createEventListener }
