@@ -1,10 +1,6 @@
-import { endOfToday, format } from 'date-fns';
-import {
-  newProjectLogistics,
-  newTaskLogistics,
-  taskProjectClickListener,
-} from '../controllers/action-controller';
+import { newProjectLogistics, newTaskLogistics } from '../controllers/action-controller';
 import Element from '../model/elementMaker';
+
 
 function makeProjectForm() {
   return new Element('form')
@@ -21,7 +17,7 @@ function makeProjectForm() {
     .addChild(
       new Element('button')
         .addAttributes({
-          type: 'text',
+          type: 'submit',
           class: 'formButton',
           id: 'projectNameButton',
         })
@@ -140,18 +136,6 @@ function makeTaskForm() {
     .build();
 }
 
-function appendTaskForm() {
-  const taskForm = makeTaskForm();
-  const parentElement = document.getElementById('taskFormContainer');
-  parentElement.appendChild(taskForm);
-}
 
-function appendProjectForm() {
-  const projectForm = makeProjectForm();
-  const parentElement = document.getElementById('content');
-  parentElement.appendChild(projectForm);
-}
 
-taskProjectClickListener();
-
-export { appendProjectForm, appendTaskForm };
+export { makeProjectForm, makeTaskForm } ;

@@ -1,10 +1,8 @@
 import './style/style.css';
 import 'normalize.css';
-import {
-  appendProjectForm,
-  appendTaskForm,
-} from './dom/DOMelements';
-import { taskProjectClickListener } from './controllers/action-controller';
+import createEventListener from './dom/Event Listeners';
 
-appendProjectForm();
-appendTaskForm();
+createEventListener('newTask');
+createEventListener('callProjectModal');
+// appendProjectForm();
+// appendTaskForm();

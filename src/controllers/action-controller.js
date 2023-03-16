@@ -1,10 +1,8 @@
 /* eslint-disable prefer-destructuring */
 /* eslint-disable no-plusplus */
 import Storage from '../model/storage';
-import Manager from '../model/manager';
 import Project from '../model/project';
 import Task from '../model/task';
-import createEventListener from '../model/utilities';
 
 const getTaskFromInput = () => {
   const name = document.getElementById('taskName').value;
@@ -24,6 +22,13 @@ const newTaskLogistics = (e) => {
   Storage.addTask('default', newTask);
 };
 
+function newProjectLogistics(e) {
+  e.preventDefault();
+  const newProjectName = document.querySelector('#projectName').value;
+
+  Storage.addProject(new Project(newProjectName));
+}
+
 const consoleTableStorage = () => {
   console.table(Storage.getManager().getAllProjects());
 };
@@ -33,11 +38,8 @@ const taskProjectClickListener = () => {
   consoleTableButton.addEventListener('click', consoleTableStorage);
 };
 
-function newProjectLogistics(e) {
-  e.preventDefault();
-  const newProjectName = document.querySelector('#projectName').value;
 
-  Storage.addProject(new Project(newProjectName));
-}
+taskProjectClickListener();
+
 
 export { taskProjectClickListener, newProjectLogistics, newTaskLogistics };

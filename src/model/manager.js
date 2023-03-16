@@ -1,5 +1,4 @@
 import Project from "./project";
-import Task from "./task";
 
  class Manager {
   constructor() {
@@ -35,7 +34,7 @@ import Task from "./task";
 
   contains(projectName) {
     return this.projectStorage.some(
-      (project) => project.nameOfProject() === projectName
+      (project) => project.getName() === projectName
     );
   }
 }
