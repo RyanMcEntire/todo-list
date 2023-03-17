@@ -1,4 +1,5 @@
-import processClick from './Event Listeners';
+import processClick from './eventListeners';
+import Element from '../model/elementMaker';
 
 function makeHeader() {
   return new Element('div')
@@ -37,10 +38,10 @@ function makeSidebar() {
               id: 'callNewProjectModal',
             })
             .addText('+')
-            .addEventListener('submit', (e) => processClick(e))
+            .addEventListener('click', (e) => processClick(e))
         )
-        .build()
-    );
+    )
+    .build();
 }
 
 function makeContentArea() {
@@ -84,17 +85,14 @@ function makeContentArea() {
           id: 'consoleTable',
         })
         .addText('console.table()')
-        .addEventListener('submit', (e) => processClick(e))
-    );
+        .addEventListener('click', (e) => processClick(e))
+    )
+    .build();
 }
 
-// const initializePage = () => {
-//   makeHeader();
-//   makeContent();
-//   makeSidebar();
-// };
-
-
+const isValidElement = (element) => {
+  return element instanceof HTMLElement;
+};
 
 const initializePage = () => {
   const elementTreeList = [
@@ -105,7 +103,11 @@ const initializePage = () => {
   ];
 
   elementTreeList.forEach((tree) => {
-    document.body.appendChild(tree);
+    if (isValidElement(tree)) {
+      document.body.appendChild(tree);
+    } else {
+      console.error(`Failed to append element: ${tree}`);
+    }
   });
 };
 

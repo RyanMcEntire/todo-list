@@ -12,7 +12,6 @@ function appendTaskForm() {
   parentElement.appendChild(taskForm);
 }
 
-
 function appendElement(parent, element) {
   const parentElement = document.getElementById(parent);
   parentElement.appendChild(element);
@@ -35,9 +34,9 @@ const processClick = (e) => {
 };
 
 const createEventListener = (id) => {
-  const element = document.getElementById(id);
-  element.addEventListener('click', (e) => processClick(e));
+  const Domlement = document.getElementById(id);
+  DomElement.addEventListener('click', (e) => processClick(e));
 };
 
 // export default createEventListener;
-export { processClick, createEventListener }
+export default processClick
