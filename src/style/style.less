@@ -21,6 +21,10 @@ form {
   background-color: @blue5;
 }
 
+h2 {
+  margin: 0;
+}
+
 .newTaskForm {
   padding: 1rem;
 }
@@ -137,6 +141,25 @@ h2 {
   height: 10rem;
   width: 15rem;
   box-shadow: 1rem 1rem 3rem #184e77; 
+}
+
+.projectFormTopArea {
+  display: flex; 
+  justify-content: space-between;
+  
+  h2 {
+    margin: .7rem;
+  }
+  .projectFormExit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: .6rem;
+  }
+}
+
+.projectDisplayArea {
+  overflow-y: scroll;
 }
 
 #consoleTable {

@@ -7,7 +7,17 @@ import Element from '../model/elementMaker';
 function makeProjectForm() {
   return new Element('form')
     .addAttributes({ class: 'form', id: 'newProjectForm' })
-    .addChild(new Element('h2').addText('New Project'))
+    .addChild(
+      new Element('div')
+        .addAttributes({ class: 'projectFormTopArea' })
+        .addChild(new Element('h2').addText('New Project'))
+        .addChild(
+          new Element('button')
+            .addAttributes({ class: 'projectFormExit', id: 'projectFormExit' })
+            .addText('X')
+        )
+    )
+
     .addChild(
       new Element('input').addAttributes({
         type: 'text',

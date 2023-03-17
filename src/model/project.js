@@ -6,7 +6,7 @@ class Project {
   }
 
   addTaskToProject(newTask) {
-    const taskName = newTask.name
+    const taskName = newTask.name;
     if (this.tasks.find((task) => task.getName() === taskName)) return;
     this.tasks.push(newTask);
   }
@@ -24,17 +24,25 @@ class Project {
     this.tasks = tasks;
   }
 
+  getTask(taskName) {
+    return this.tasks.find((task) => task.getTaskName() === taskName);
+  }
+
+  getAllThisTasks = () => this.tasks;
+
   hasTask(newTask) {
     return this.tasks.some((task) => task.id === newTask.id);
   }
 
-  getName = () => this.projectName;
+  getNameOfProject = () => this.projectName;
 
   SetNameOfProject(newName) {
     this.projectName = newName;
   }
 
-  getAllThisTasks = () => this.tasks;
+  getTaskName() {
+    return this.name;
+  }
 }
 
 export default Project;

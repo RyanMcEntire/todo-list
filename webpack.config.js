@@ -6,7 +6,7 @@ module.exports = {
   entry: './src/index.js',
   plugins: [
     new HtmlWebpackPlugin({
-      title: 'Output Management',
+      title: 'Clowdy Todo',
     }),
   ],
   devtool: 'inline-source-map',

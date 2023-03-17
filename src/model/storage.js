@@ -38,9 +38,29 @@ export default class Storage {
     Storage.saveManager(manager);
   }
 
+  static removeProject(projectName) {
+    const manager = Storage.getManager();
+    manager.getProject(projectName);
+    Storage.saveManager(manager);
+  }
+
   static addTask(projectName, task) {
     const manager = Storage.getManager();
     manager.getProject(projectName).addTaskToProject(task);
     Storage.saveManager(manager);
+  }
+
+  static removeTask(projectName, taskName) {
+    const manager = Storage.getManager();
+    manager.getProject(projectName).deleteTaskFromProject(taskName);
+    Storage.saveManager(manager);
+  }
+
+  static changeTaskName(projectName, oldTaskName, newTaskName) {
+    const manager = Storage.getManager();
+    manager
+      .getProject(projectName)
+      .getTaskName(oldTaskName)
+      .setTaskName(newTaskName);
   }
 }

@@ -14,12 +14,21 @@ function makeContent() {
   return new Element('div')
     .addAttributes({ class: 'content', id: 'content' })
     .addChild(
-      new Element('div') // sidebar
+      new Element('div') // sidebar //
         .addAttributes({ class: 'sidebar', id: 'sidebar' })
         .addChild(
-          new Element('div').addAttributes({ class: 'sortManagerContainer' })
+          new Element('div').addAttributes({
+            class: 'sortInfoContainer',
+            id: 'sortInfoContainer',
+          })
         )
         .addChild(new Element('div').addAttributes({ class: 'borderDiv' }))
+        .addChild(
+          new Element('div').addAttributes({
+            class: 'projectDisplayArea',
+            id: 'projectDisplayArea',
+          })
+        ) 
         .addChild(
           new Element('div')
             .addAttributes({ class: 'newProjectFooter' })
@@ -55,7 +64,7 @@ function makeContent() {
                   id: 'newTask',
                 })
                 .addText('New Task +')
-                .addEventListener('submit', (e) => processClick(e))
+                .addEventListener('click', (e) => processClick(e))
             )
         )
 
@@ -87,18 +96,12 @@ function makeContent() {
     .build();
 }
 
-
-
 const isValidElement = (element) => {
   return element instanceof HTMLElement;
 };
 
 const initializePage = () => {
-  const elementTreeList = [
-    makeHeader(),
-    makeContent(),
-
-  ];
+  const elementTreeList = [makeHeader(), makeContent()];
 
   elementTreeList.forEach((tree) => {
     if (isValidElement(tree)) {

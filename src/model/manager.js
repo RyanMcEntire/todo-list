@@ -15,6 +15,13 @@ class Manager {
     this.projectStorage.push(newProject);
   }
 
+  removeProject(projectName) {
+    const projectToBeDeleted = this.projectStorage.find(
+      (project) => project.getName() === projectName
+    );
+    this.projectStorage.splice(this.projectStorage.indexOf(projectToBeDeleted))
+  }
+
   getAllProjects() {
     return this.projectStorage;
   }
@@ -24,7 +31,7 @@ class Manager {
       // error code thingy displayError('project)
     }
     return this.projectStorage.find(
-      (project) => project.getName() === projectName
+      (project) => project.getNameOfProject() === projectName
     );
   }
 
@@ -34,7 +41,7 @@ class Manager {
 
   contains(projectName) {
     return this.projectStorage.some(
-      (project) => project.getName() === projectName
+      (project) => project.getNameOfProject() === projectName
     );
   }
 }
