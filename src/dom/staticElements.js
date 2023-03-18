@@ -1,4 +1,4 @@
-import processClick from './eventListeners';
+import { processClick, doTheThing } from '../controllers/eventListeners';
 import Element from '../model/elementMaker';
 
 function makeHeader() {
@@ -28,7 +28,7 @@ function makeContent() {
             class: 'projectDisplayArea',
             id: 'projectDisplayArea',
           })
-        ) 
+        )
         .addChild(
           new Element('div')
             .addAttributes({ class: 'newProjectFooter' })
@@ -60,6 +60,15 @@ function makeContent() {
             .addChild(
               new Element('button')
                 .addAttributes({
+                  class: 'consoleTable',
+                  id: 'consoleTable',
+                })
+                .addText('console.table()')
+                .addEventListener('click', (e) => processClick(e))
+            )
+            .addChild(
+              new Element('button')
+                .addAttributes({
                   class: 'newTask',
                   id: 'newTask',
                 })
@@ -67,38 +76,29 @@ function makeContent() {
                 .addEventListener('click', (e) => processClick(e))
             )
         )
-
-        .addChild(
-          new Element('div').addAttributes({
-            id: 'taskView',
-          })
-        )
         .addChild(
           new Element('div').addAttributes({
             class: 'borderDiv',
           })
         )
         .addChild(
-          new Element('div').addAttributes({
-            id: 'taskFormContainer',
-          })
-        )
-        .addChild(
-          new Element('button')
+          new Element('div')
             .addAttributes({
-              class: 'consoleTable',
-              id: 'consoleTable',
+              class: 'taskView',
+              id: 'taskView',
             })
-            .addText('console.table()')
-            .addEventListener('click', (e) => processClick(e))
+            .addChild(
+              new Element('div').addAttributes({
+                class: 'taskFormContainer',
+                id: 'taskFormContainer',
+              })
+            )
         )
     )
     .build();
 }
 
-const isValidElement = (element) => {
-  return element instanceof HTMLElement;
-};
+const isValidElement = (element) => element instanceof HTMLElement;
 
 const initializePage = () => {
   const elementTreeList = [makeHeader(), makeContent()];
@@ -110,6 +110,7 @@ const initializePage = () => {
       console.error(`Failed to append element: ${tree}`);
     }
   });
+  doTheThing();
 };
 
 export default initializePage;

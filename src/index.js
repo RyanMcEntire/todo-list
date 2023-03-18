@@ -3,5 +3,3 @@ import 'normalize.css';
 import initializePage from './dom/staticElements';
 
 initializePage();
-// appendProjectForm();
-// appendTaskForm();

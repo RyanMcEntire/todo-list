@@ -22,4 +22,12 @@ export default class Task {
   getDateDue() {
     return this.due;
   }
+
+  setPriority(priority) {
+    this.priority = priority;
+  }
+
+  setCompleted(isComplete) {
+    this.completed = isComplete;
+  }
 }

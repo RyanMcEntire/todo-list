@@ -98,11 +98,17 @@ h2 {
   width: 20rem;
   min-height: 100vh;
   background-color: @green3;
-  justify-content: space-between;
+  justify-content:flex-start;
 }
 
 .sortManagerContainer {
   height: 12rem;
+}
+
+.sortInfoContainer {
+  height: 18rem;
+  background-color: @green2;
+
 }
 
 .header {
@@ -125,11 +131,17 @@ h2 {
   height: 4rem;
   align-items: center;
   justify-content: space-between;
+  position: fixed;
+  bottom: 0; 
+  width:20rem; 
   .callNewProjectModal {
-    padding: 0rem 2rem; 
+    padding: 0rem 1.3rem;  
+    margin-right: 1rem;
   }
   .createNewProjectLabel {
-    padding: 0rem 2rem;
+    padding: 0rem 0rem 0rem 1rem;
+    margin: 0; 
+    text-align: start;
   }
 }
 
@@ -159,7 +171,18 @@ h2 {
 }
 
 .projectDisplayArea {
-  overflow-y: scroll;
+  display: flex;
+  overflow-y: auto;
+  flex-grow: 1; 
+}
+
+.projectCard {
+  display: flex;
+  background-color: @green4;
+  height: 2.5rem;
+  align-items: center;
+  flex-grow: 1; 
+  justify-content: space-around;
 }
 
 #consoleTable {
@@ -169,8 +192,11 @@ h2 {
 .contentArea {
   display: flex;
   flex-direction: column;
-  flex-grow: 1;
+  flex-grow: 1; 
   max-width: 65rem;
+  justify-content: start;
+
+
 }
 
 .borderDiv {
@@ -181,7 +207,20 @@ h2 {
 }
 
 .taskInfoArea {
-  height: 12rem;
+  display: flex;
+  height: 10rem; 
+  justify-content: space-around;
+  align-items: end;
+  >* {
+    margin-bottom: 1rem; 
+  }
+}
+
+.taskView {
+  display: flex;
+  flex-direction: column; 
+  flex-grow: 1;
+  overflow-y: auto; 
 }
 
 #consoleTable {

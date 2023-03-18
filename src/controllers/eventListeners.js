@@ -1,17 +1,20 @@
-import { makeProjectForm, makeTaskForm } from './formElements';
+import { makeProjectForm, makeTaskForm } from '../dom/formElements';
 import Storage from '../model/storage';
-
+import makeProjectCard from '../dom/dynamicElements';
 
 function appendElement(parent, element) {
   const parentElement = document.getElementById(parent);
   parentElement.appendChild(element);
 }
 
+
+
+
 const consoleTableStorage = () => {
-  return console.table(Storage.getManager().getAllProjects());
+  console.table(Storage.getManager().getAllProjects());
 };
 
-const processClick = (e) => {
+const processStaticClick = (e) => {
   const eventID = e.target.id;
   const actions = {
     callNewProjectModal: () => appendElement('content', makeProjectForm()),
@@ -23,4 +26,12 @@ const processClick = (e) => {
   }
 };
 
-export default processClick
+
+const doTheThing = () => {
+  const newProj = makeProjectCard('Personal');
+  appendElement('projectDisplayArea', newProj)
+}
+
+
+
+export { processStaticClick as processClick, doTheThing }  

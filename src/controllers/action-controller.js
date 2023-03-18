@@ -25,7 +25,7 @@ const newTaskLogistics = (e) => {
 function newProjectLogistics(e) {
   e.preventDefault();
   const newProjectName = document.querySelector('#projectName').value;
-
+  
   Storage.addProject(new Project(newProjectName));
   document.getElementById('newProjectForm').remove();
 }
