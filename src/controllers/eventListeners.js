@@ -1,14 +1,12 @@
 import { makeProjectForm, makeTaskForm } from '../dom/formElements';
 import Storage from '../model/storage';
 import makeProjectCard from '../dom/dynamicElements';
+import Element from '../model/elementMaker';
 
 function appendElement(parent, element) {
   const parentElement = document.getElementById(parent);
   parentElement.appendChild(element);
 }
-
-
-
 
 const consoleTableStorage = () => {
   console.table(Storage.getManager().getAllProjects());
@@ -26,12 +24,30 @@ const processStaticClick = (e) => {
   }
 };
 
-
-const doTheThing = () => {
-  const newProj = makeProjectCard('Personal');
-  appendElement('projectDisplayArea', newProj)
-}
-
+// const doTheThing = () => {
+//   const newProj = makeProjectCard('Personal');
+//   appendElement('projectDisplayArea', newProj)
+// }
 
 
-export { processStaticClick as processClick, doTheThing }  
+const addAllProjectCards = () => {
+  const allProjects = Storage.getManager().getAllProjects();
+  allProjects.forEach((project) => {
+    const pName = project.getNameOfProject();
+    const pCard = makeProjectCard(pName);
+    function border() {
+      return new Element('div').addAttributes({
+        class: 'borderDiv ',
+      });
+    }
+
+    // console.log();
+
+    const anchor = document.getElementById('sidebarScrollAnchor');
+    const container = document.getElementById('projectDisplayArea');
+    container.insertBefore(pCard, anchor);
+    container.insertBefore(border(), anchor);
+  });
+};
+
+export { processStaticClick as processClick, addAllProjectCards, };

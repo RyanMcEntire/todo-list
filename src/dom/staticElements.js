@@ -1,4 +1,7 @@
-import { processClick, doTheThing } from '../controllers/eventListeners';
+import {
+  processClick,
+  addAllProjectCards,
+} from '../controllers/eventListeners';
 import Element from '../model/elementMaker';
 
 function makeHeader() {
@@ -24,11 +27,19 @@ function makeContent() {
         )
         .addChild(new Element('div').addAttributes({ class: 'borderDiv' }))
         .addChild(
-          new Element('div').addAttributes({
-            class: 'projectDisplayArea',
-            id: 'projectDisplayArea',
-          })
+          new Element('div')
+            .addAttributes({
+              class: 'projectDisplayArea',
+              id: 'projectDisplayArea',
+            })
+            .addChild(
+              new Element('div').addAttributes({
+                class: 'sidebarScrollAnchor',
+                id: 'sidebarScrollAnchor',
+              })
+            )
         )
+
         .addChild(
           new Element('div')
             .addAttributes({ class: 'newProjectFooter' })
@@ -56,7 +67,7 @@ function makeContent() {
             .addAttributes({
               class: 'taskInfoArea',
             })
-            .addChild(new Element('h2').addText('Will Be Dynamic Eventually'))
+            .addChild(new Element('h2').addText('PlaceHolder Text'))
             .addChild(
               new Element('button')
                 .addAttributes({
@@ -110,7 +121,7 @@ const initializePage = () => {
       console.error(`Failed to append element: ${tree}`);
     }
   });
-  doTheThing();
+  addAllProjectCards();
 };
 
 export default initializePage;

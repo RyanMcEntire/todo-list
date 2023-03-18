@@ -98,7 +98,7 @@ h2 {
   width: 20rem;
   min-height: 100vh;
   background-color: @green3;
-  justify-content:flex-start;
+  justify-content: flex-start;
 }
 
 .sortManagerContainer {
@@ -106,9 +106,8 @@ h2 {
 }
 
 .sortInfoContainer {
-  height: 18rem;
-  background-color: @green2;
-
+  height: 16rem;
+  background-color: @green1;
 }
 
 .header {
@@ -126,21 +125,21 @@ h2 {
 
 .newProjectFooter {
   display: flex;
-  font-size: 2rem; 
-  background-color: @blue3; 
+  font-size: 2rem;
+  background-color: @blue3;
   height: 4rem;
   align-items: center;
   justify-content: space-between;
   position: fixed;
-  bottom: 0; 
-  width:20rem; 
+  bottom: 0;
+  width: 20rem;
   .callNewProjectModal {
-    padding: 0rem 1.3rem;  
+    padding: 0rem 1.3rem;
     margin-right: 1rem;
   }
   .createNewProjectLabel {
     padding: 0rem 0rem 0rem 1rem;
-    margin: 0; 
+    margin: 0;
     text-align: start;
   }
 }
@@ -152,37 +151,43 @@ h2 {
   transform: translate(-50%, -50%);
   height: 10rem;
   width: 15rem;
-  box-shadow: 1rem 1rem 3rem #184e77; 
+  box-shadow: 1rem 1rem 3rem #184e77;
 }
 
 .projectFormTopArea {
-  display: flex; 
+  display: flex;
   justify-content: space-between;
-  
+
   h2 {
-    margin: .7rem;
+    margin: 0.7rem;
   }
   .projectFormExit {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: .6rem;
+    margin: 0.6rem;
   }
 }
 
 .projectDisplayArea {
   display: flex;
-  overflow-y: auto;
-  flex-grow: 1; 
+  flex-direction: column;
+  overflow-y: scroll;
+  overflow-anchor: none;
+}
+
+.sidebarScrollAnchor {
+overflow-anchor: auto;
+height: 4rem;
 }
 
 .projectCard {
   display: flex;
-  background-color: @green4;
+  background-color: @green3;
   height: 2.5rem;
   align-items: center;
-  flex-grow: 1; 
-  justify-content: space-around;
+  justify-content: space-between;
+  padding: 0 1rem;
 }
 
 #consoleTable {
@@ -192,38 +197,35 @@ h2 {
 .contentArea {
   display: flex;
   flex-direction: column;
-  flex-grow: 1; 
+  flex-grow: 1;
   max-width: 65rem;
   justify-content: start;
-
-
 }
 
 .borderDiv {
   border-style: solid;
   border-width: 1px;
-  border-color: darken(@green5, 30%);
-  margin: 0rem 1rem;
+  border-color: @green1;
+  margin: 0rem 2rem; 
 }
 
 .taskInfoArea {
   display: flex;
-  height: 10rem; 
+  height: 10rem;
   justify-content: space-around;
   align-items: end;
-  >* {
-    margin-bottom: 1rem; 
+  > * {
+    margin-bottom: 1rem;
   }
 }
 
 .taskView {
   display: flex;
-  flex-direction: column; 
+  flex-direction: column;
   flex-grow: 1;
-  overflow-y: auto; 
+  overflow-y: auto;
 }
 
 #consoleTable {
   width: 8rem;
 }
-
