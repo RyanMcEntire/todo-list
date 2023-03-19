@@ -32,6 +32,12 @@ export default class Storage {
     return manager;
   }
 
+  static setCurrentProject(project) {
+    const manager = Storage.getManager();
+    manager.setCurrentProject(project)
+    Storage.saveManager(manager);
+  }
+
   static addProject(project) {
     const manager = Storage.getManager();
     manager.addProject(project);
@@ -40,7 +46,7 @@ export default class Storage {
 
   static removeProject(projectName) {
     const manager = Storage.getManager();
-    manager.getProject(projectName);
+    manager.removeProject(projectName);
     Storage.saveManager(manager);
   }
 

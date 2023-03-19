@@ -1,5 +1,5 @@
 import {
-  processClick,
+  processStaticClick,
   addAllProjectCards,
 } from '../controllers/eventListeners';
 import Element from '../model/elementMaker';
@@ -55,7 +55,7 @@ function makeContent() {
                   id: 'callNewProjectModal',
                 })
                 .addText('+')
-                .addEventListener('click', (e) => processClick(e))
+                .addEventListener('click', (e) => processStaticClick(e))
             )
         )
     )
@@ -75,7 +75,7 @@ function makeContent() {
                   id: 'consoleTable',
                 })
                 .addText('console.table()')
-                .addEventListener('click', (e) => processClick(e))
+                .addEventListener('click', (e) => processStaticClick(e))
             )
             .addChild(
               new Element('button')
@@ -84,7 +84,7 @@ function makeContent() {
                   id: 'newTask',
                 })
                 .addText('New Task +')
-                .addEventListener('click', (e) => processClick(e))
+                .addEventListener('click', (e) => processStaticClick(e))
             )
         )
         .addChild(

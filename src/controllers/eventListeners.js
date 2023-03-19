@@ -24,11 +24,12 @@ const processStaticClick = (e) => {
   }
 };
 
+
+
 // const doTheThing = () => {
 //   const newProj = makeProjectCard('Personal');
 //   appendElement('projectDisplayArea', newProj)
 // }
-
 
 const addAllProjectCards = () => {
   const allProjects = Storage.getManager().getAllProjects();
@@ -36,18 +37,22 @@ const addAllProjectCards = () => {
     const pName = project.getNameOfProject();
     const pCard = makeProjectCard(pName);
     function border() {
-      return new Element('div').addAttributes({
-        class: 'borderDiv ',
-      });
+      return new Element('div')
+        .addAttributes({
+          class: 'borderDiv ',
+        })
+        .build();
     }
 
     // console.log();
 
     const anchor = document.getElementById('sidebarScrollAnchor');
     const container = document.getElementById('projectDisplayArea');
+
     container.insertBefore(pCard, anchor);
     container.insertBefore(border(), anchor);
+    // container.insertBefore(border(), anchor);
   });
 };
 
-export { processStaticClick as processClick, addAllProjectCards, };
+export { processStaticClick, addAllProjectCards };

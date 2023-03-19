@@ -4,6 +4,7 @@ class Manager {
   constructor() {
     this.projectStorage = [];
     this.projectStorage.push(new Project('default'));
+    this.currentProject = []
   }
 
   addProject(newProject) {
@@ -15,9 +16,17 @@ class Manager {
     this.projectStorage.push(newProject);
   }
 
+  setCurrentProject(projectName) {
+    this.currentProject = projectName
+  }
+
+  getCurrentProject() {
+    return this.currentProject
+  }
+
   removeProject(projectName) {
     const projectToBeDeleted = this.projectStorage.find(
-      (project) => project.getName() === projectName
+      (project) => project.getNameOfProject() === projectName
     );
     this.projectStorage.splice(this.projectStorage.indexOf(projectToBeDeleted))
   }

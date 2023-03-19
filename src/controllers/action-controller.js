@@ -19,7 +19,7 @@ const getTaskFromInput = () => {
 const newTaskLogistics = (e) => {
   e.preventDefault();
   const newTask = getTaskFromInput();
-  Storage.addTask('default', newTask);
+  Storage.addTask(Storage.currentProject, newTask);
 };
 
 function newProjectLogistics(e) {
@@ -33,4 +33,4 @@ function newProjectLogistics(e) {
 
 
 
-export { newProjectLogistics, newTaskLogistics };
+export { newProjectLogistics, newTaskLogistics, };
