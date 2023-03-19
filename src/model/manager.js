@@ -4,7 +4,7 @@ class Manager {
   constructor() {
     this.projectStorage = [];
     this.projectStorage.push(new Project('default'));
-    this.currentProject = []
+    this.currentProject = [];
   }
 
   addProject(newProject) {
@@ -16,19 +16,20 @@ class Manager {
     this.projectStorage.push(newProject);
   }
 
-  setCurrentProject(projectName) {
-    this.currentProject = projectName
+  setCurrentProject(project) {
+    this.currentProject = [];
+    this.currentProject.push(project);
   }
 
   getCurrentProject() {
-    return this.currentProject
+    return this.currentProject;
   }
 
   removeProject(projectName) {
     const projectToBeDeleted = this.projectStorage.find(
       (project) => project.getNameOfProject() === projectName
     );
-    this.projectStorage.splice(this.projectStorage.indexOf(projectToBeDeleted))
+    this.projectStorage.splice(this.projectStorage.indexOf(projectToBeDeleted));
   }
 
   getAllProjects() {

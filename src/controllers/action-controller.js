@@ -19,7 +19,8 @@ const getTaskFromInput = () => {
 const newTaskLogistics = (e) => {
   e.preventDefault();
   const newTask = getTaskFromInput();
-  Storage.addTask(Storage.currentProject, newTask);
+  Storage.getManager().getCurrentProject().addTaskToProject(newTask);
+  // Storage.addTask(Storage.currentProject, newTask);
 };
 
 function newProjectLogistics(e) {

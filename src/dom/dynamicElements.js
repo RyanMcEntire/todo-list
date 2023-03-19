@@ -1,5 +1,5 @@
 import Element from '../model/elementMaker';
-import processDynamicClick from '../controllers/dynamicClickHandler';
+import processProjectCardClick from '../controllers/dynamicClickHandler';
 
 function makeProjectCard(projectName) {
   return new Element('div')
@@ -8,7 +8,7 @@ function makeProjectCard(projectName) {
       'data-projectCard': projectName,
       value: 'projectCard',
     })
-    // .addEventListener('mousedown', (e) => processDynamicClick(e))
+    // .addEventListener('mousedown', (e) => processProjectCardClick(e))
     .addChild(
       new Element('button')
         .addAttributes({
@@ -17,16 +17,17 @@ function makeProjectCard(projectName) {
           value: 'projectDelete',
         })
         .addText('X')
-        .addEventListener('mousedown', (e) => processDynamicClick(e))
+        .addEventListener('mousedown', (e) => processProjectCardClick(e))
     )
     .addChild(
       new Element('div')
         .addAttributes({
           class: 'projectName',
           'data-projectName': projectName,
+          value: 'projectName'
         })
         .addText(projectName)
-      .addEventListener('mousedown', (e) => processDynamicClick(e))
+      .addEventListener('mousedown', (e) => processProjectCardClick(e))
     )
 
     .addChild(
@@ -37,7 +38,7 @@ function makeProjectCard(projectName) {
           value: 'projectNewTask',
         })
         .addText('+')
-        .addEventListener('mousedown', (e) => processDynamicClick(e))
+        .addEventListener('mousedown', (e) => processProjectCardClick(e))
     )
 
     .build();

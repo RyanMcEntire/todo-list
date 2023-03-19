@@ -1,7 +1,7 @@
 import {
   processStaticClick,
   addAllProjectCards,
-} from '../controllers/eventListeners';
+} from '../controllers/staticClickHandlers';
 import Element from '../model/elementMaker';
 
 function makeHeader() {
@@ -110,6 +110,8 @@ function makeContent() {
 }
 
 const isValidElement = (element) => element instanceof HTMLElement;
+
+
 
 const initializePage = () => {
   const elementTreeList = [makeHeader(), makeContent()];

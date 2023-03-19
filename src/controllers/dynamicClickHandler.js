@@ -2,7 +2,8 @@ import Storage from '../model/storage';
 import { makeTaskForm } from '../dom/formElements';
 
 function updateCurrentProject(projectName) {
-  Storage.getManager().setCurrentProject(projectName);
+  const toBeMadeCurrent = Storage.getManager().getProject(projectName);
+  Storage.getManager().setCurrentProject(toBeMadeCurrent);
 }
 
 function appendDynamicElement(parent, element) {
@@ -15,20 +16,20 @@ function newTaskOnProjectClick(projectName) {
 
   appendDynamicElement('taskFormContainer', makeTaskForm());
 }
-
-const processDynamicClick = (e) => {
-  let project = null;
-  if (e.target.value === 'projectCard') {
-    project = e.target.getAttribute('data-projectName');
-    updateCurrentProject(project);
+// click handler for all project cards
+const processProjectCardClick = (e) => {
+  let projectName = null;
+  if (e.target.value === 'projectName') {
+    projectName = e.target.getAttribute('data-projectName');
+    updateCurrentProject(projectName);
   }
   if (e.target.value === 'projectDelete') {
-    project = e.target.getAttribute('data-projectDelete');
-    Storage.removeProject(project);
+    projectName = e.target.getAttribute('data-projectDelete');
+    Storage.removeProject(projectName);
   }
   if (e.target.value === 'projectNewTask') {
-    project = e.target.getAttribute('data-projectNewTask');
-    newTaskOnProjectClick(project);
+    projectName = e.target.getAttribute('data-projectNewTask');
+    newTaskOnProjectClick(projectName);
   }
   // if (Object.keys(e.target.dataset).toString() === 'projectCard') {
   //   project = e.target.value;
@@ -53,10 +54,10 @@ const processDynamicClick = (e) => {
   // if (actions[project]) {
   //   actions[project]();
   // }
-  console.log(e.target.getAttribute('data-projectCard'));
-  console.log(Storage.getManager());
+  // console.log(Storage.getManager().getProject('BUSINESS'));
   console.log(e.target.value);
-  console.log(project);
+  console.log(projectName);
+  console.log(Storage.getManager().getCurrentProject());
 };
 
-export default processDynamicClick;
+export default processProjectCardClick;
