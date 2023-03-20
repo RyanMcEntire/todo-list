@@ -3,11 +3,12 @@ import { makeTaskForm } from '../dom/formElements';
 
 function updateCurrentProject(projectName) {
   Storage.setCurrentProject(projectName);
-  console.log(projectName);
 }
 
 function appendDynamicElement(parent, element) {
   const parentElement = document.getElementById(parent);
+  while (parentElement.hasChildNodes()) parentElement.firstChild.remove();
+
   parentElement.appendChild(element);
 }
 
@@ -34,7 +35,7 @@ const processProjectCardClick = (e) => {
 
   // console.log(e.target.value);
   // console.log(projectName);
-  console.log(Storage.getManager().getCurrentProject());
+  // console.log(Storage.getManager().getCurrentProject());
 };
 
 export default processProjectCardClick;

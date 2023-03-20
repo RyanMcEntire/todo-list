@@ -38,7 +38,7 @@ class Manager {
 
   getProject(projectName) {
     if (!projectName) {
-      // error code thingy displayError('project)
+      console.error('This project does not exist.');
     }
     return this.projectStorage.find(
       (project) => project.getNameOfProject() === projectName
