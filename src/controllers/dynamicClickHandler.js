@@ -2,8 +2,8 @@ import Storage from '../model/storage';
 import { makeTaskForm } from '../dom/formElements';
 
 function updateCurrentProject(projectName) {
-  const toBeMadeCurrent = Storage.getManager().getProject(projectName);
-  Storage.getManager().setCurrentProject(toBeMadeCurrent);
+  Storage.setCurrentProject(projectName);
+  console.log(projectName);
 }
 
 function appendDynamicElement(parent, element) {
@@ -31,32 +31,9 @@ const processProjectCardClick = (e) => {
     projectName = e.target.getAttribute('data-projectNewTask');
     newTaskOnProjectClick(projectName);
   }
-  // if (Object.keys(e.target.dataset).toString() === 'projectCard') {
-  //   project = e.target.value;
 
-  //   updateCurrentProject(project);
-  // }
-  // if (e.target === projectDelete) {
-  //   project = e.target.dataset.projectDelete.toString();
-  // }
-  // if (e.target === projectNewTask) {
-  //   project = e.target.dataset.projectCard.toString();
-  // }
-
-  // const project = e.target;
-  // const projectNameArray = Object.keys(project);
-  // const projectName = projectNameArray.toString();
-  // const actions = {
-  //   'data-projectCard': () => updateCurrentProject(projectName),
-  //   'data-projectDelete': () => Storage.removeProject(projectName),
-  //   'data-projectNewTask': () => newTaskOnProjectClick(projectName),
-  // };
-  // if (actions[project]) {
-  //   actions[project]();
-  // }
-  // console.log(Storage.getManager().getProject('BUSINESS'));
-  console.log(e.target.value);
-  console.log(projectName);
+  // console.log(e.target.value);
+  // console.log(projectName);
   console.log(Storage.getManager().getCurrentProject());
 };
 
