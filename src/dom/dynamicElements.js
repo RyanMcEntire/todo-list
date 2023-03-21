@@ -38,4 +38,8 @@ function makeProjectCard(projectName) {
     .build();
 }
 
+function makeTaskCardMain(taskName) {
+  return new Element('div')
+}
+
 export default makeProjectCard;

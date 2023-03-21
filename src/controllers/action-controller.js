@@ -23,9 +23,8 @@ const newTaskLogistics = (e) => {
   const newTask = getTaskFromInput();
   const currentProject = Storage.getManager().getCurrentProject();
   Storage.addTask(currentProject[0], newTask);
-  const taskFormParent = document.getElementById('taskFormContainer');
-  taskFormParent.firstChild.remove();
-};
+  
+}
 
 function newProjectLogistics(e) {
   e.preventDefault();

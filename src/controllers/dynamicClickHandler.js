@@ -10,17 +10,21 @@ function updateCurrentProject(projectName) {
   projectNameHeader.innerText = projectName;
 }
 
-function appendDynamicElement(parent, element) {
-  const parentElement = document.getElementById(parent);
-  while (parentElement.hasChildNodes()) parentElement.firstChild.remove();
+function appendTaskForm(element) {
+  const taskFormContainer = document.getElementById('taskFormContainer')
+  const taskForm = document.getElementById('newTaskForm');
+  if (!(taskFormContainer.contains(taskForm))) {
+    taskFormContainer.appendChild(element);
+  }
+  // while (parentElement.hasChildNodes()) parentElement.firstChild.remove();
 
-  parentElement.appendChild(element);
+  // parentElement.appendChild(element);
 }
 
 function newTaskOnProjectClick(projectName) {
   updateCurrentProject(projectName);
 
-  appendDynamicElement('taskFormContainer', makeTaskForm());
+  appendTaskForm(makeTaskForm());
 }
 
 // click handler for all project cards

@@ -1,8 +1,10 @@
+/* eslint-disable import/no-cycle */
 import {
   newProjectLogistics,
   newTaskLogistics,
 } from '../controllers/action-controller';
 import Element from '../model/elementMaker';
+import { closeProjectForm } from '../controllers/staticClickHandlers';
 
 function makeProjectForm() {
   return new Element('form')
@@ -16,6 +18,7 @@ function makeProjectForm() {
             .addAttributes({ class: 'projectFormExit', id: 'projectFormExit' })
             .addText('X')
         )
+        .addEventListener('click', () => closeProjectForm())
     )
 
     .addChild(

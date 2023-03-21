@@ -4,10 +4,24 @@ import { makeProjectForm, makeTaskForm } from '../dom/formElements';
 import Storage from '../model/storage';
 import makeProjectCard from '../dom/dynamicElements';
 
+function clearTaskForm() {
+  const container = document.getElementById('taskFormContainer');
+  while (container.firstChild) {
+    container.removeChild(container.firstChild);
+  }
+}
+
 function appendElement(parent, element) {
+  clearTaskForm();
   const parentElement = document.getElementById(parent);
   parentElement.appendChild(element);
 }
+
+function closeProjectForm() { 
+  const form = document.getElementById('newProjectForm')
+  form.remove()
+}
+
 
 const consoleTableStorage = () => {
   console.table(Storage.getManager().getAllProjects());
@@ -35,10 +49,8 @@ const addAllProjectCards = () => {
     const pName = project.getNameOfProject();
     const pCard = makeProjectCard(pName);
 
-    
-    
     container.appendChild(pCard);
   });
 };
 
-export { processStaticClick, addAllProjectCards };
+export { processStaticClick, addAllProjectCards, closeProjectForm };
