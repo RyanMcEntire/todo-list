@@ -5,6 +5,7 @@ import {
   addAllProjectCards,
 } from '../controllers/staticClickHandlers';
 import Element from '../model/elementMaker';
+import Storage from '../model/storage';
 
 function makeHeader() {
   return new Element('div')
@@ -29,11 +30,10 @@ function makeContent() {
         )
         .addChild(new Element('div').addAttributes({ class: 'borderDiv' }))
         .addChild(
-          new Element('div')
-            .addAttributes({
-              class: 'projectDisplayArea',
-              id: 'projectDisplayArea',
-            })
+          new Element('div').addAttributes({
+            class: 'projectDisplayArea',
+            id: 'projectDisplayArea',
+          })
         )
         .addChild(
           new Element('div')
@@ -62,9 +62,10 @@ function makeContent() {
             .addAttributes({
               class: 'taskInfoArea',
             })
-            .addChild(new Element('h2').addAttributes({
-              id: 'projectNameHeader'
-            })
+            .addChild(
+              new Element('h2').addAttributes({
+                id: 'projectNameHeader',
+              })
             )
             .addChild(
               new Element('button')
@@ -109,7 +110,13 @@ function makeContent() {
 
 const isValidElement = (element) => element instanceof HTMLElement;
 
-
+function initCurrentProjectName() {
+  const currentProject = Storage.getManager().getCurrentProject()
+  const currentProjectName = String(currentProject)
+  console.log(Storage.getManager());
+  const projectNameHeader = document.getElementById('projectNameHeader');
+  projectNameHeader.innerText = currentProjectName;
+}
 
 const initializePage = () => {
   const elementTreeList = [makeHeader(), makeContent()];
@@ -122,7 +129,8 @@ const initializePage = () => {
     }
   });
   addAllProjectCards();
-  updateProjectEventListeners()
+  updateProjectEventListeners();
+  initCurrentProjectName();
 };
 
 export default initializePage;
