@@ -1,4 +1,5 @@
 /* eslint-disable no-console */
+import updateProjectEventListeners from '../controllers/dynamicClickHandler';
 import {
   processStaticClick,
   addAllProjectCards,
@@ -118,6 +119,7 @@ const initializePage = () => {
     }
   });
   addAllProjectCards();
+  updateProjectEventListeners()
 };
 
 export default initializePage;

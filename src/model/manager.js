@@ -30,7 +30,7 @@ class Manager {
     const projectToBeDeleted = this.projectStorage.find(
       (project) => project.getNameOfProject() === projectName
     );
-    this.projectStorage.splice(this.projectStorage.indexOf(projectToBeDeleted));
+    this.projectStorage.splice(this.projectStorage.indexOf(projectToBeDeleted), 1);
   }
 
   getAllProjects() {

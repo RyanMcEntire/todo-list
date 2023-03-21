@@ -34,7 +34,7 @@ export default class Storage {
 
   static setCurrentProject(project) {
     const manager = Storage.getManager();
-    manager.setCurrentProject(project)
+    manager.setCurrentProject(project);
     Storage.saveManager(manager);
   }
 
@@ -68,5 +68,6 @@ export default class Storage {
       .getProject(projectName)
       .getTaskName(oldTaskName)
       .setTaskName(newTaskName);
+    Storage.saveManager(manager);
   }
 }

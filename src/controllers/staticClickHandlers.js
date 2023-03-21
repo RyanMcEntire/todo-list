@@ -24,16 +24,12 @@ const processStaticClick = (e) => {
   }
 };
 
-
-
 const addAllProjectCards = () => {
   const allProjects = Storage.getManager().getAllProjects();
   allProjects.forEach((project) => {
     const pName = project.getNameOfProject();
     const pCard = makeProjectCard(pName);
 
-
-    
     const container = document.getElementById('projectDisplayArea');
 
     container.appendChild(pCard);
