@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import Project from './project';
 
 class Manager {

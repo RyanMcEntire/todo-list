@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import Storage from '../model/storage';
 import { makeTaskForm } from '../dom/formElements';
 
@@ -17,25 +18,28 @@ function newTaskOnProjectClick(projectName) {
 
   appendDynamicElement('taskFormContainer', makeTaskForm());
 }
+
 // click handler for all project cards
-const processProjectCardClick = (e) => {
+// const allProjectCards = document.querySelectorAll()
+
+const projectDisplayArea = document.getElementById('projectDisplayArea');
+projectDisplayArea.addEventListener('click', (e) => {
   let projectName = null;
-  if (e.target.value === 'projectName') {
+  if (e.target.matches('projectName')) {
     projectName = e.target.getAttribute('data-projectName');
     updateCurrentProject(projectName);
   }
-  if (e.target.value === 'projectDelete') {
+  if (e.target.matches('deleteProjectButton')) {
     projectName = e.target.getAttribute('data-projectDelete');
     Storage.removeProject(projectName);
   }
-  if (e.target.value === 'projectNewTask') {
+  if (e.target.matches('.projectNewTask')) {
     projectName = e.target.getAttribute('data-projectNewTask');
     newTaskOnProjectClick(projectName);
   }
 
-  // console.log(e.target.value);
+  console.log(e.target.value);
   // console.log(projectName);
   // console.log(Storage.getManager().getCurrentProject());
-};
+});
 
-export default processProjectCardClick;

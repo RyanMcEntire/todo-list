@@ -113,7 +113,6 @@ function makeTaskForm() {
                     .addChild(createRadioInput('low', 'priority', true))
                 )
             )
-
             .addChild(
               new Element('fieldset')
                 .addAttributes({
@@ -134,7 +133,6 @@ function makeTaskForm() {
             )
         )
     )
-
     .addChild(
       new Element('button')
         .addAttributes({

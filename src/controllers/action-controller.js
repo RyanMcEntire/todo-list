@@ -20,6 +20,7 @@ const newTaskLogistics = (e) => {
   e.preventDefault();
   const newTask = getTaskFromInput();
   const currentProject = Storage.getManager().getCurrentProject()
+  // eslint-disable-next-line no-console
   console.log(currentProject[0])
   Storage.addTask(currentProject[0], newTask);
   const taskFormParent = document.getElementById('taskFormContainer');

@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import {
   processStaticClick,
   addAllProjectCards,
@@ -32,14 +33,7 @@ function makeContent() {
               class: 'projectDisplayArea',
               id: 'projectDisplayArea',
             })
-            .addChild(
-              new Element('div').addAttributes({
-                class: 'sidebarScrollAnchor',
-                id: 'sidebarScrollAnchor',
-              })
-            )
         )
-
         .addChild(
           new Element('div')
             .addAttributes({ class: 'newProjectFooter' })
