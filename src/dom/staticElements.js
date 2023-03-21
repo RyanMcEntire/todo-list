@@ -62,7 +62,10 @@ function makeContent() {
             .addAttributes({
               class: 'taskInfoArea',
             })
-            .addChild(new Element('h2').addText('PlaceHolder Text'))
+            .addChild(new Element('h2').addAttributes({
+              id: 'projectNameHeader'
+            })
+            )
             .addChild(
               new Element('button')
                 .addAttributes({

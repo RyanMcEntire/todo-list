@@ -3,6 +3,8 @@
 import Storage from '../model/storage';
 import Project from '../model/project';
 import Task from '../model/task';
+// eslint-disable-next-line import/no-cycle
+import { addAllProjectCards } from './staticClickHandlers';
 
 const getTaskFromInput = () => {
   const name = document.getElementById('taskName').value;
@@ -19,7 +21,7 @@ const getTaskFromInput = () => {
 const newTaskLogistics = (e) => {
   e.preventDefault();
   const newTask = getTaskFromInput();
-  const currentProject = Storage.getManager().getCurrentProject()
+  const currentProject = Storage.getManager().getCurrentProject();
   Storage.addTask(currentProject[0], newTask);
   const taskFormParent = document.getElementById('taskFormContainer');
   taskFormParent.firstChild.remove();
@@ -28,12 +30,10 @@ const newTaskLogistics = (e) => {
 function newProjectLogistics(e) {
   e.preventDefault();
   const newProjectName = document.querySelector('#projectName').value;
-  
+
   Storage.addProject(new Project(newProjectName));
   document.getElementById('newProjectForm').remove();
+  addAllProjectCards();
 }
 
-
-
-
-export { newProjectLogistics, newTaskLogistics, };
+export { newProjectLogistics, newTaskLogistics };

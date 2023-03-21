@@ -26,12 +26,16 @@ const processStaticClick = (e) => {
 
 const addAllProjectCards = () => {
   const allProjects = Storage.getManager().getAllProjects();
+  const container = document.getElementById('projectDisplayArea');
+  while (container.firstChild) {
+    container.removeChild(container.firstChild);
+  }
   allProjects.forEach((project) => {
     const pName = project.getNameOfProject();
     const pCard = makeProjectCard(pName);
 
-    const container = document.getElementById('projectDisplayArea');
-
+    
+    
     container.appendChild(pCard);
   });
 };
