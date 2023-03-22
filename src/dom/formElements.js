@@ -64,87 +64,97 @@ function makeTaskForm() {
       class: 'form newTaskForm',
       id: 'newTaskForm',
     })
+    .addChild(new Element('div')
+    .addAttributes({
+      class: 'taskHelperContainerContainer'
+    })
     .addChild(
       new Element('div')
-        .addAttributes({ class: 'taskTextFields' })
+        .addAttributes({
+          class: 'taskHelperContainer',
+        })
         .addChild(
           new Element('div')
-            .addAttributes({
-              class: 'taskDescriptionArea',
-            })
-            .addChild(
-              new Element('input').addAttributes({
-                type: 'text',
-                class: 'input',
-                id: 'taskName',
-                placeholder: 'Task Name',
-              })
-            )
-            .addChild(
-              new Element('textArea').addAttributes({
-                name: 'description',
-                class: 'input',
-                id: 'taskDescription',
-                placeholder: 'Task Description',
-                maxlength: '400',
-              })
-            )
-        )
-        .addChild(
-          new Element('div')
-            .addAttributes({
-              class: 'rightSideTaskFormArea',
-            })
+            .addAttributes({ class: 'taskTextFields' })
             .addChild(
               new Element('div')
                 .addAttributes({
-                  class: 'dateAndPriorityArea',
+                  class: 'taskDescriptionArea',
                 })
                 .addChild(
                   new Element('input').addAttributes({
-                    type: 'date',
+                    type: 'text',
                     class: 'input',
-                    id: 'taskDue',
+                    id: 'taskName',
+                    placeholder: 'Task Name',
                   })
+                )
+                .addChild(
+                  new Element('textArea').addAttributes({
+                    name: 'description',
+                    class: 'input',
+                    id: 'taskDescription',
+                    placeholder: 'Task Description',
+                    maxlength: '400',
+                  })
+                )
+            )
+            .addChild(
+              new Element('div')
+                .addAttributes({
+                  class: 'rightSideTaskFormArea',
+                })
+                .addChild(
+                  new Element('div')
+                    .addAttributes({
+                      class: 'dateAndPriorityArea',
+                    })
+                    .addChild(
+                      new Element('input').addAttributes({
+                        type: 'date',
+                        class: 'input',
+                        id: 'taskDue',
+                      })
+                    )
+                    .addChild(
+                      new Element('fieldset')
+                        .addAttributes({
+                          class: 'priorityFieldSet',
+                        })
+                        .addChild(new Element('legend').addText('Priority'))
+                        .addChild(createRadioInput('high', 'priority'))
+                        .addChild(createRadioInput('normal', 'priority', true))
+                        .addChild(createRadioInput('low', 'priority', false))
+                    )
                 )
                 .addChild(
                   new Element('fieldset')
                     .addAttributes({
-                      class: 'priorityFieldSet',
+                      class: 'completed',
                     })
-                    .addChild(new Element('legend').addText('Priority'))
-                    .addChild(createRadioInput('high', 'priority', false))
-                    .addChild(createRadioInput('normal', 'priority', true))
-                    .addChild(createRadioInput('low', 'priority', false))
-                )
-                .addChild(
-                  new Element('button')
-                    .addAttributes({
-                      class: 'taskFormClose',
-                    })
-                    .addText('X')
-                )
-            )
-            .addChild(
-              new Element('fieldset')
-                .addAttributes({
-                  class: 'completed',
-                })
-                .addChild(new Element('legend').addText('completed'))
-                .addChild(
-                  new Element('div').addChild(
-                    new Element('input').addAttributes({
-                      type: 'checkbox',
-                      id: 'completed',
-                      name: 'completed',
-                      checked: false,
-                    })
-                  )
+                    .addChild(new Element('legend').addText('completed'))
+                    .addChild(
+                      new Element('div').addChild(
+                        new Element('input').addAttributes({
+                          type: 'checkbox',
+                          id: 'completed',
+                          name: 'completed',
+                          checked: false,
+                        })
+                      )
+                    )
                 )
             )
         )
     )
-
+    .addChild(
+      new Element('button')
+        .addAttributes({
+          class: 'taskFormClose',
+        })
+        .addText('X')
+    )
+        )
     .addChild(
       new Element('button')
         .addAttributes({

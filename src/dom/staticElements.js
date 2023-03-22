@@ -14,6 +14,11 @@ function makeHeader() {
     .addChild(
       new Element('div').addAttributes({ class: 'projectFormContainer' })
     )
+    .addChild(
+      new Element('div')
+        .addAttributes({ class: 'siteLogo' })
+        .addChild(new Element('h1').addAttributes({ class: 'siteLogo' }).addText(''))
+    )
     .build();
 }
 
