@@ -50,6 +50,7 @@ const updateProjectEventListeners = () => {
     if (e.target.value === 'projectNewTask') {
       projectName = e.target.getAttribute('data-projectNewTask');
       newTaskOnProjectClick(projectName);
+      getCurrentProjectAndAppendTaskMain(projectName);
     }
 
     // console.log(e.target.value);
