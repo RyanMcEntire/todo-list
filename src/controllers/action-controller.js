@@ -8,6 +8,7 @@ import {
   addAllProjectCards,
   getCurrentProjectAndAppendTaskMain,
 } from './staticClickHandlers';
+import { updateCurrentProject } from './dynamicClickHandler';
 
 const getTaskFromInput = () => {
   const name = document.getElementById('taskName').value;
@@ -38,7 +39,10 @@ function newProjectLogistics(e) {
 
   Storage.addProject(new Project(newProjectName));
   document.getElementById('newProjectForm').remove();
+  Storage.setCurrentProject(newProjectName);
+  updateCurrentProject(newProjectName);
   addAllProjectCards();
+  getCurrentProjectAndAppendTaskMain(newProjectName);
 }
 
 export { newProjectLogistics, newTaskLogistics };

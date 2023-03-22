@@ -62,4 +62,4 @@ const handleTaskCardClick = (e) => {
   console.log(e.target.value);
 };
 
-export { updateProjectEventListeners, handleTaskCardClick };
+export { updateProjectEventListeners, handleTaskCardClick, updateCurrentProject };

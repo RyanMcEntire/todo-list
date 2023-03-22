@@ -135,9 +135,10 @@ const initializePage = () => {
       console.error(`Failed to append element: ${tree}`);
     }
   });
-  addAllProjectCards();
   updateProjectEventListeners();
   initCurrentProjectName();
+
+  addAllProjectCards();
   getCurrentProjectAndAppendTaskMain(currentProjectData);
 };
 

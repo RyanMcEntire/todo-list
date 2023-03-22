@@ -5,7 +5,7 @@ class Manager {
   constructor() {
     this.projectStorage = [];
     this.projectStorage.push(new Project('default'));
-    this.currentProject = [];
+    this.currentProject = ['default'];
   }
 
   addProject(newProject) {
