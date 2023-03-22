@@ -1,7 +1,10 @@
 /* eslint-disable import/no-cycle */
 import Storage from '../model/storage';
 import { makeTaskForm } from '../dom/formElements';
-import { addAllProjectCards } from './staticClickHandlers';
+import {
+  addAllProjectCards,
+  getCurrentProjectAndAppendTaskMain,
+} from './staticClickHandlers';
 
 // functions that handle project button click events
 
@@ -12,9 +15,9 @@ function updateCurrentProject(projectName) {
 }
 
 function appendTaskForm(element) {
-  const taskFormContainer = document.getElementById('taskFormContainer')
+  const taskFormContainer = document.getElementById('taskFormContainer');
   const taskForm = document.getElementById('newTaskForm');
-  if (!(taskFormContainer.contains(taskForm))) {
+  if (!taskFormContainer.contains(taskForm)) {
     taskFormContainer.appendChild(element);
   }
   // while (parentElement.hasChildNodes()) parentElement.firstChild.remove();
@@ -37,7 +40,7 @@ const updateProjectEventListeners = () => {
     if (e.target.value === 'projectName') {
       projectName = e.target.getAttribute('data-projectName');
       updateCurrentProject(projectName);
-      
+      getCurrentProjectAndAppendTaskMain(projectName);
     }
     if (e.target.value === 'projectDelete') {
       projectName = e.target.getAttribute('data-projectDelete');
@@ -56,7 +59,7 @@ const updateProjectEventListeners = () => {
 };
 
 const handleTaskCardClick = (e) => {
-console.log(e.target.value)
-}
+  console.log(e.target.value);
+};
 
-export { updateProjectEventListeners, handleTaskCardClick};
+export { updateProjectEventListeners, handleTaskCardClick };
