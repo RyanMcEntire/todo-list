@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import updateProjectEventListeners from '../controllers/dynamicClickHandler';
+import { updateProjectEventListeners } from '../controllers/dynamicClickHandler';
 import {
   processStaticClick,
   addAllProjectCards,
@@ -103,6 +103,12 @@ function makeContent() {
                 id: 'taskFormContainer',
               })
             )
+            .addChild(
+              new Element('div').addAttributes({
+                class: 'taskCardContainer',
+                id: 'taskCardContainer',
+              })
+            )
         )
     )
     .build();
@@ -113,7 +119,7 @@ const isValidElement = (element) => element instanceof HTMLElement;
 function initCurrentProjectName() {
   const currentProject = Storage.getManager().getCurrentProject()
   const currentProjectName = String(currentProject)
-  console.log(Storage.getManager());
+  // console.log(Storage.getManager());
   const projectNameHeader = document.getElementById('projectNameHeader');
   projectNameHeader.innerText = currentProjectName;
 }

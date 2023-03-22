@@ -38,8 +38,57 @@ function makeProjectCard(projectName) {
     .build();
 }
 
-function makeTaskCardMain(taskName) {
+function makeTaskCardMain(taskName, completed, priority, dueDate, DueDays) {
   return new Element('div')
+    .addAttributes({
+      class: 'taskCard',
+      'data-taskCard': taskName,
+      value: 'taskCard',
+    })
+    .addEventListener('click', (e) => handleTaskCardClick(e))
+    .addChild(
+      new Element('div')
+        .addAttributes({
+          class: 'taskLeftSide',
+        })
+        .addChild(
+          new Element('checkBox').addAttributes({
+            class: 'taskCardMainCompleteArea',
+            checked: completed,
+            'data-taskCompleted': taskName
+          })
+        )
+        .addChild(
+          new Element('div').addAttributes({
+            class: 'taskCardMainPriorityArea',
+            'data-taskPriority': priority,
+          })
+        )
+        .addChild(
+          new Element('div')
+            .addAttributes({
+              class: 'taskCardMainTextArea',
+            })
+            .addText(taskName)
+        )
+    )
+    .addChild(
+      new Element('div')
+        .addAttributes({
+          class: 'taskRightSide',
+        })
+        .addChild(
+          new Element('div').addAttributes({
+            class: 'taskCardMainDueDate',
+          })
+        )
+        .addChild(
+          new Element('div').addAttributes({
+            class: 'taskCardMainDueDays',
+          })
+        )
+    )
+    .build();
 }
 
-export default makeProjectCard;
+export { makeProjectCard, makeTaskCardMain };

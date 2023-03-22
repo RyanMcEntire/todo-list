@@ -47,10 +47,14 @@ const updateProjectEventListeners = () => {
       newTaskOnProjectClick(projectName);
     }
 
-    console.log(e.target.value);
-    console.log(projectName);
-    console.log(Storage.getManager().getCurrentProject());
+    // console.log(e.target.value);
+    // console.log(projectName);
+    // console.log(Storage.getManager().getCurrentProject());
   });
 };
 
-export default updateProjectEventListeners;
+const handleTaskCardClick = (e) => {
+console.log(e.target.value)
+}
+
+export { updateProjectEventListeners, handleTaskCardClick};

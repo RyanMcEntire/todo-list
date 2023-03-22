@@ -2,7 +2,7 @@
 // eslint-disable-next-line import/no-cycle
 import { makeProjectForm, makeTaskForm } from '../dom/formElements';
 import Storage from '../model/storage';
-import makeProjectCard from '../dom/dynamicElements';
+import { makeProjectCard, makeTaskCardMain } from '../dom/dynamicElements';
 
 function clearTaskForm() {
   const container = document.getElementById('taskFormContainer');
