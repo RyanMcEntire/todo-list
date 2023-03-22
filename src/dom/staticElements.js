@@ -3,6 +3,7 @@ import { updateProjectEventListeners } from '../controllers/dynamicClickHandler'
 import {
   processStaticClick,
   addAllProjectCards,
+  getCurrentProjectAndAppendTaskMain,
 } from '../controllers/staticClickHandlers';
 import Element from '../model/elementMaker';
 import Storage from '../model/storage';
@@ -117,8 +118,8 @@ function makeContent() {
 const isValidElement = (element) => element instanceof HTMLElement;
 
 function initCurrentProjectName() {
-  const currentProject = Storage.getManager().getCurrentProject()
-  const currentProjectName = String(currentProject)
+  const currentProject = Storage.getManager().getCurrentProject();
+  const currentProjectName = String(currentProject);
   // console.log(Storage.getManager());
   const projectNameHeader = document.getElementById('projectNameHeader');
   projectNameHeader.innerText = currentProjectName;
@@ -126,7 +127,7 @@ function initCurrentProjectName() {
 
 const initializePage = () => {
   const elementTreeList = [makeHeader(), makeContent()];
-
+  const currentProjectData = Storage.getManager().getCurrentProject();
   elementTreeList.forEach((tree) => {
     if (isValidElement(tree)) {
       document.body.appendChild(tree);
@@ -137,6 +138,7 @@ const initializePage = () => {
   addAllProjectCards();
   updateProjectEventListeners();
   initCurrentProjectName();
+  getCurrentProjectAndAppendTaskMain(currentProjectData);
 };
 
 export default initializePage;

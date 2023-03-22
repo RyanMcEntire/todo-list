@@ -1,4 +1,6 @@
+/* eslint-disable import/no-cycle */
 import Element from '../model/elementMaker';
+import { handleTaskCardClick } from '../controllers/dynamicClickHandler';
 // import processProjectCardClick from '../controllers/dynamicClickHandler';
 
 function makeProjectCard(projectName) {
@@ -52,10 +54,11 @@ function makeTaskCardMain(taskName, completed, priority, dueDate, DueDays) {
           class: 'taskLeftSide',
         })
         .addChild(
-          new Element('checkBox').addAttributes({
+          new Element('input').addAttributes({
             class: 'taskCardMainCompleteArea',
+            type: 'checkbox', 
             checked: completed,
-            'data-taskCompleted': taskName
+            'data-taskCompleted': taskName,
           })
         )
         .addChild(
@@ -78,14 +81,17 @@ function makeTaskCardMain(taskName, completed, priority, dueDate, DueDays) {
           class: 'taskRightSide',
         })
         .addChild(
-          new Element('div').addAttributes({
-            class: 'taskCardMainDueDate',
-          })
+          new Element('div')
+            .addAttributes({
+              class: 'taskCardMainDueDate',
+            })
+            .addText(`Due: ${  dueDate}`) 
         )
         .addChild(
           new Element('div').addAttributes({
             class: 'taskCardMainDueDays',
           })
+          .addText(DueDays) 
         )
     )
     .build();

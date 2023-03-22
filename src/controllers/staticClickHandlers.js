@@ -1,5 +1,5 @@
+/* eslint-disable import/no-cycle */
 /* eslint-disable no-console */
-// eslint-disable-next-line import/no-cycle
 import { makeProjectForm, makeTaskForm } from '../dom/formElements';
 import Storage from '../model/storage';
 import { makeProjectCard, makeTaskCardMain } from '../dom/dynamicElements';
@@ -17,11 +17,10 @@ function appendElement(parent, element) {
   parentElement.appendChild(element);
 }
 
-function closeProjectForm() { 
-  const form = document.getElementById('newProjectForm')
-  form.remove()
+function closeProjectForm() {
+  const form = document.getElementById('newProjectForm');
+  form.remove();
 }
-
 
 const consoleTableStorage = () => {
   console.table(Storage.getManager().getAllProjects());
@@ -53,4 +52,47 @@ const addAllProjectCards = () => {
   });
 };
 
-export { processStaticClick, addAllProjectCards, closeProjectForm };
+
+// actually appends
+const appendTaskCardToMain = (currentProject) => {
+  const container = document.getElementById('taskCardContainer');
+  
+  const allTasks = currentProject.getAllThisTasks();
+  while (container.firstChild) {
+    container.removeChild(container.firstChild);
+  }
+
+  allTasks.forEach((task) => {
+    const taskName = task.getName();
+    const completed = task.getCompleted();
+    const priority = task.getPriority();
+    const dueDate = task.getDateDue();
+    const DueDays = 'REPLACE ME';
+    const tCard = makeTaskCardMain(
+      taskName,
+      completed,
+      priority,
+      dueDate,
+      DueDays
+    );
+    const borderDiv = document.createElement('div');
+    borderDiv.classList.add('taskBorderDiv'); 
+    container.appendChild(borderDiv);
+    container.appendChild(tCard);
+  });
+};
+
+// interprets the signal so i can call the real function
+function getCurrentProjectAndAppendTaskMain(currentProjectData) {
+  const manager = Storage.getManager();
+  const currentProjectName = String(currentProjectData);
+  const currentProject = manager.getProject(currentProjectName);
+  appendTaskCardToMain(currentProject);
+}
+
+export {
+  processStaticClick,
+  addAllProjectCards,
+  closeProjectForm,
+  getCurrentProjectAndAppendTaskMain,
+};

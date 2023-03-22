@@ -6,6 +6,7 @@ import {
 import Element from '../model/elementMaker';
 import { closeProjectForm } from '../controllers/staticClickHandlers';
 
+// PROJECT FORM
 function makeProjectForm() {
   return new Element('form')
     .addAttributes({ class: 'form', id: 'newProjectForm' })
@@ -56,6 +57,7 @@ function createRadioInput(id, name, isChecked) {
     .addChild(new Element('label').addAttributes({ for: id }).addText(id));
 }
 
+// TASK FORM
 function makeTaskForm() {
   return new Element('form')
     .addAttributes({
@@ -112,8 +114,15 @@ function makeTaskForm() {
                     })
                     .addChild(new Element('legend').addText('Priority'))
                     .addChild(createRadioInput('high', 'priority', false))
-                    .addChild(createRadioInput('normal', 'priority', false))
-                    .addChild(createRadioInput('low', 'priority', true))
+                    .addChild(createRadioInput('normal', 'priority', true))
+                    .addChild(createRadioInput('low', 'priority', false))
+                )
+                .addChild(
+                  new Element('button')
+                    .addAttributes({
+                      class: 'taskFormClose',
+                    })
+                    .addText('X')
                 )
             )
             .addChild(
@@ -128,7 +137,6 @@ function makeTaskForm() {
                       type: 'checkbox',
                       id: 'completed',
                       name: 'completed',
-                      value: 'completed',
                       checked: false,
                     })
                   )
@@ -136,6 +144,7 @@ function makeTaskForm() {
             )
         )
     )
+
     .addChild(
       new Element('button')
         .addAttributes({

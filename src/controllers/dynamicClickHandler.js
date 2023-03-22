@@ -1,3 +1,4 @@
+/* eslint-disable import/no-cycle */
 import Storage from '../model/storage';
 import { makeTaskForm } from '../dom/formElements';
 import { addAllProjectCards } from './staticClickHandlers';
@@ -36,6 +37,7 @@ const updateProjectEventListeners = () => {
     if (e.target.value === 'projectName') {
       projectName = e.target.getAttribute('data-projectName');
       updateCurrentProject(projectName);
+      
     }
     if (e.target.value === 'projectDelete') {
       projectName = e.target.getAttribute('data-projectDelete');

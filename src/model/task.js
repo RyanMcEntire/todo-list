@@ -27,7 +27,15 @@ export default class Task {
     this.priority = priority;
   }
 
+  getPriority() {
+    return this.priority;
+  }
+
   setCompleted(isComplete) {
     this.completed = isComplete;
+  }
+
+  getCompleted() {
+    return this.completed;
   }
 }
