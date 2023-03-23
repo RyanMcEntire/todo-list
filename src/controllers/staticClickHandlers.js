@@ -83,6 +83,7 @@ const appendTaskCardToMain = (currentProject) => {
 };
 
 // interprets the signal so i can call the real function
+// my spaghetti code scramble got out of hand in the second half
 function getCurrentProjectAndAppendTaskMain(currentProjectData) {
   const manager = Storage.getManager();
   const currentProjectName = String(currentProjectData);

@@ -17,7 +17,7 @@ function makeHeader() {
     .addChild(
       new Element('div')
         .addAttributes({ class: 'siteLogo' })
-        .addChild(new Element('h1').addAttributes({ class: 'siteLogo' }).addText(''))
+        .addChild(new Element('h1').addAttributes({ class: 'siteLogo' }).addText('Clowdy Todo'))
     )
     .build();
 }
@@ -35,6 +35,7 @@ function makeContent() {
           })
         )
         .addChild(new Element('div').addAttributes({ class: 'borderDiv' }))
+        
         .addChild(
           new Element('div').addAttributes({
             class: 'projectDisplayArea',

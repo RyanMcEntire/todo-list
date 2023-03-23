@@ -26,6 +26,10 @@ class Manager {
     return this.currentProject;
   }
 
+  getCurrentProjectName() {
+    
+  }
+
   removeProject(projectName) {
     const projectToBeDeleted = this.projectStorage.find(
       (project) => project.getNameOfProject() === projectName
