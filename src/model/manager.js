@@ -27,14 +27,19 @@ class Manager {
   }
 
   getCurrentProjectName() {
-    
+    console.log(String(this.currentProject));
+    return String(this.currentProject)
+
   }
 
   removeProject(projectName) {
     const projectToBeDeleted = this.projectStorage.find(
       (project) => project.getNameOfProject() === projectName
     );
-    this.projectStorage.splice(this.projectStorage.indexOf(projectToBeDeleted), 1);
+    this.projectStorage.splice(
+      this.projectStorage.indexOf(projectToBeDeleted),
+      1
+    );
   }
 
   getAllProjects() {
@@ -52,12 +57,6 @@ class Manager {
 
   setProjects(projects) {
     this.projectStorage = projects;
-  }
-
-  contains(projectName) {
-    return this.projectStorage.some(
-      (project) => project.getNameOfProject() === projectName
-    );
   }
 }
 

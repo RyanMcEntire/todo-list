@@ -52,11 +52,10 @@ const addAllProjectCards = () => {
   });
 };
 
-
 // actually appends
 const appendTaskCardToMain = (currentProject) => {
   const container = document.getElementById('taskCardContainer');
-  
+
   const allTasks = currentProject.getAllThisTasks();
   while (container.firstChild) {
     container.removeChild(container.firstChild);
@@ -76,7 +75,7 @@ const appendTaskCardToMain = (currentProject) => {
       DueDays
     );
     const borderDiv = document.createElement('div');
-    borderDiv.classList.add('taskBorderDiv'); 
+    borderDiv.classList.add('taskBorderDiv');
     container.appendChild(borderDiv);
     container.appendChild(tCard);
   });
@@ -84,6 +83,7 @@ const appendTaskCardToMain = (currentProject) => {
 
 // interprets the signal so i can call the real function
 // my spaghetti code scramble got out of hand in the second half
+// instead of reaching for a new class method i went for spaghetti
 function getCurrentProjectAndAppendTaskMain(currentProjectData) {
   const manager = Storage.getManager();
   const currentProjectName = String(currentProjectData);
@@ -96,4 +96,5 @@ export {
   addAllProjectCards,
   closeProjectForm,
   getCurrentProjectAndAppendTaskMain,
+  appendTaskCardToMain
 };

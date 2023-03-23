@@ -4,6 +4,7 @@ import { makeTaskForm } from '../dom/formElements';
 import {
   addAllProjectCards,
   getCurrentProjectAndAppendTaskMain,
+  appendTaskCardToMain,
 } from './staticClickHandlers';
 
 // functions that handle project button click events
@@ -63,4 +64,20 @@ const handleTaskCardClick = (e) => {
   console.log(e.target.value);
 };
 
-export { updateProjectEventListeners, handleTaskCardClick, updateCurrentProject };
+function deleteTaskMain(e) {
+  const taskToDelete = e.target.value;
+  
+  const manager = Storage.getManager();
+  const projectName = manager.getCurrentProjectName();
+  Storage.removeTask(projectName, taskToDelete); 
+  const project = manager.getProject(projectName)
+  console.log(project); 
+  appendTaskCardToMain(project);
+}
+
+export {
+  updateProjectEventListeners,
+  handleTaskCardClick,
+  updateCurrentProject,
+  deleteTaskMain,
+};

@@ -1,6 +1,9 @@
 /* eslint-disable import/no-cycle */
 import Element from '../model/elementMaker';
-import { handleTaskCardClick } from '../controllers/dynamicClickHandler';
+import {
+  handleTaskCardClick,
+  deleteTaskMain,
+} from '../controllers/dynamicClickHandler';
 // import processProjectCardClick from '../controllers/dynamicClickHandler';
 
 function makeProjectCard(projectName) {
@@ -45,7 +48,7 @@ function makeTaskCardMain(taskName, completed, priority, dueDate, DueDays) {
     .addAttributes({
       class: 'taskCard',
       'data-taskCard': taskName,
-      value: 'taskCard',
+      value: taskName,
     })
     .addEventListener('click', (e) => handleTaskCardClick(e))
     .addChild(
@@ -56,7 +59,7 @@ function makeTaskCardMain(taskName, completed, priority, dueDate, DueDays) {
         .addChild(
           new Element('input').addAttributes({
             class: 'taskCardMainCompleteArea',
-            type: 'checkbox', 
+            type: 'checkbox',
             checked: completed,
             'data-taskCompleted': taskName,
           })
@@ -85,13 +88,23 @@ function makeTaskCardMain(taskName, completed, priority, dueDate, DueDays) {
             .addAttributes({
               class: 'taskCardMainDueDate',
             })
-            .addText(`Due: ${  dueDate}`) 
+            .addText(`Due: ${dueDate}`)
         )
         .addChild(
-          new Element('div').addAttributes({
-            class: 'taskCardMainDueDays',
-          })
-          .addText(DueDays) 
+          new Element('div')
+            .addAttributes({
+              class: 'taskCardMainDueDays',
+            })
+            .addText(DueDays)
+        )
+        .addChild(
+          new Element('button')
+            .addAttributes({
+              class: 'taskCardMainDelete',
+              value: taskName,
+            })
+            .addText('x')
+            .addEventListener('click', (e) => deleteTaskMain(e))
         )
     )
     .build();
