@@ -69,10 +69,12 @@ function deleteTaskMain(e) {
   
   const manager = Storage.getManager();
   const projectName = manager.getCurrentProjectName();
+  const project = manager.getProject(projectName);
+  console.log(project)
   Storage.removeTask(projectName, taskToDelete); 
-  const project = manager.getProject(projectName)
-  console.log(project); 
-  appendTaskCardToMain(project);
+  const updatedProject = Storage.getManager().getProject(projectName);
+  console.log(updatedProject); 
+  appendTaskCardToMain(updatedProject);
 }
 
 export {

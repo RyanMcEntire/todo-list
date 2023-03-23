@@ -57,9 +57,10 @@ const appendTaskCardToMain = (currentProject) => {
   const container = document.getElementById('taskCardContainer');
 
   const allTasks = currentProject.getAllThisTasks();
-  while (container.firstChild) {
-    container.removeChild(container.firstChild);
-  }
+  container.replaceChildren();
+  // while (container.firstChild) {
+  //   container.removeChild(container.firstChild);
+  // }
 
   allTasks.forEach((task) => {
     const taskName = task.getName();
@@ -96,5 +97,5 @@ export {
   addAllProjectCards,
   closeProjectForm,
   getCurrentProjectAndAppendTaskMain,
-  appendTaskCardToMain
+  appendTaskCardToMain,
 };
