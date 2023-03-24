@@ -7,7 +7,9 @@ import {
   getCurrentProjectAndAppendTaskMain,
   appendTaskCardToMain,
 } from './staticClickHandlers';
-import { taskFormSelectors } from '../dom/selectors';
+import { taskFormSel } from '../dom/selectors';
+import { createSaveButton, createCancelButton } from '../dom/dynamicElements';
+import { getTaskFromInput } from './action-controller';
 
 // functions that handle project button click events
 
@@ -52,15 +54,11 @@ const updateProjectEventListeners = () => {
       newTaskOnProjectClick(projectName);
       getCurrentProjectAndAppendTaskMain(projectName);
     }
-
-    // console.log(e.target.value);
-    // console.log,(projectName);
-    // console.log(Storage.getManager().getCurrentProject());
   });
 };
 
 function whichPriorityChecked() {
-  const ids = taskFormSelectors();
+  const ids = taskFormSel();
   const buttons = ids.priority;
   for (let i = 0; i < buttons.length; i++) {
     if (buttons[i].checked === true) {
@@ -70,9 +68,16 @@ function whichPriorityChecked() {
   return null;
 }
 
-function appendTaskEditButtons() {
-  const container = taskFormSelectors().completeAndEdit;
-  console.log('appendButtons > ', container);
+function appendTaskEditButtons(taskName) {
+  const ele = taskFormSel();
+  const completedBox = ele.completedContainer;
+  const { completeAndEdit } = ele;
+  console.log(typeof completeAndEdit);
+  console.log('appendButtons > ', completedBox);
+  const save = createSaveButton(taskName);
+  const cancel = createCancelButton();
+  completeAndEdit.insertBefore(save, completedBox);
+  completeAndEdit.insertBefore(cancel, completedBox);
 }
 
 function initEditTask(projectName, taskName) {
@@ -80,7 +85,7 @@ function initEditTask(projectName, taskName) {
   const project = manager.getProject(projectName);
   const task = project.getTask(taskName);
   appendTaskForm(makeTaskForm());
-  const ids = taskFormSelectors();
+  const ids = taskFormSel();
   ids.name.value = task.getName();
   ids.description.value = task.getDescription();
   ids.due.value = task.getDateDue();
@@ -94,20 +99,34 @@ function initEditTask(projectName, taskName) {
   if (ids.high.name === whichPriorityChecked()) {
     ids.high.checked = true;
   }
-  appendTaskEditButtons();
+  appendTaskEditButtons(taskName);
+  ids.create.remove();
+  return { taskName };
+}
+
+function saveEdit() {
+  const manager = Storage.getManager();
+  const projectName = manager.getCurrentProjectName();
+  const project = manager.getProject(projectName)
+  const oldTask = initEditTask().taskName;
+  const newTask = getTaskFromInput();
+  Storage.editTask(projectName, oldTask, newTask);
+  appendTaskCardToMain(project)
+}
+
+function cancelEdit() {
+  // taskFormSel().taskFormCont.remove();
 }
 
 const handleTaskCardClick = (e) => {
-  const taskName = e.currentTarget.dataset.taskcard;
+  const taskName = e.currentTarget.dataset.taskcardmaintext;
   e.stopPropagation();
   const projectName = Storage.getManager().getCurrentProjectName();
-  console.log('card ', taskName);
   initEditTask(projectName, taskName);
 };
 
 function deleteTaskMain(e) {
   const taskToDelete = e.currentTarget.dataset.deletetask;
-  console.log('delete Button ', e.currentTarget.value);
   const manager = Storage.getManager();
   const projectName = manager.getCurrentProjectName();
   Storage.removeTask(projectName, taskToDelete);
@@ -120,4 +139,10 @@ export {
   handleTaskCardClick,
   updateCurrentProject,
   deleteTaskMain,
+  saveEdit,
+  cancelEdit,
 };
+
+for (let i = 0; i < 5; i++) {
+  // code here
+}

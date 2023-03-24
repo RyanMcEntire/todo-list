@@ -136,11 +136,13 @@ function makeTaskForm() {
                       new Element('div')
                         .addAttributes({
                           class: 'completeAndEdit',
+                          id: 'completeAndEdit',
                         })
                         .addChild(
                           new Element('fieldset')
                             .addAttributes({
                               class: 'completed',
+                              id: 'completedContainer',
                             })
                             .addChild(
                               new Element('legend').addText('completed')

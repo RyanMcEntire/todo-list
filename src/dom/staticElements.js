@@ -7,6 +7,7 @@ import {
 } from '../controllers/staticClickHandlers';
 import Element from '../model/elementMaker';
 import Storage from '../model/storage';
+import { upperSel } from './selectors';
 
 function makeHeader() {
   return new Element('div')
@@ -17,7 +18,11 @@ function makeHeader() {
     .addChild(
       new Element('div')
         .addAttributes({ class: 'siteLogo' })
-        .addChild(new Element('h1').addAttributes({ class: 'siteLogo' }).addText('Clowdy Todo'))
+        .addChild(
+          new Element('h1')
+            .addAttributes({ class: 'siteLogo' })
+            .addText('Clowdy Todo')
+        )
     )
     .build();
 }
@@ -34,8 +39,6 @@ function makeContent() {
             id: 'sortInfoContainer',
           })
         )
-        .addChild(new Element('div').addAttributes({ class: 'borderDiv' }))
-        
         .addChild(
           new Element('div').addAttributes({
             class: 'projectDisplayArea',
@@ -89,14 +92,9 @@ function makeContent() {
                   class: 'newTask',
                   id: 'newTask',
                 })
-                .addText('New Task +')
+                .addText('New Task')
                 .addEventListener('click', (e) => processStaticClick(e))
             )
-        )
-        .addChild(
-          new Element('div').addAttributes({
-            class: 'borderDiv',
-          })
         )
         .addChild(
           new Element('div')
@@ -126,8 +124,7 @@ const isValidElement = (element) => element instanceof HTMLElement;
 function initCurrentProjectName() {
   const currentProject = Storage.getManager().getCurrentProject();
   const currentProjectName = String(currentProject);
-  // console.log(Storage.getManager());
-  const projectNameHeader = document.getElementById('projectNameHeader');
+  const projectNameHeader = upperSel().projHeader;
   projectNameHeader.innerText = currentProjectName;
 }
 

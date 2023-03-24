@@ -3,6 +3,7 @@
 import { makeProjectForm, makeTaskForm } from '../dom/formElements';
 import Storage from '../model/storage';
 import { makeProjectCard, makeTaskCardMain } from '../dom/dynamicElements';
+import { sidebarSel, contentSel } from '../dom/selectors';
 
 function clearTaskForm() {
   const container = document.getElementById('taskFormContainer');
@@ -40,7 +41,7 @@ const processStaticClick = (e) => {
 
 const addAllProjectCards = () => {
   const allProjects = Storage.getManager().getAllProjects();
-  const container = document.getElementById('projectDisplayArea');
+  const container = sidebarSel().projArea;
   while (container.firstChild) {
     container.removeChild(container.firstChild);
   }
@@ -52,16 +53,8 @@ const addAllProjectCards = () => {
   });
 };
 
-// actually appends
-const appendTaskCardToMain = (currentProject) => {
-  const container = document.getElementById('taskCardContainer');
-
-  const allTasks = currentProject.getAllThisTasks();
-  container.replaceChildren();
-  // while (container.firstChild) {
-  //   container.removeChild(container.firstChild);
-  // }
-
+function loopAndAppend(allTasks) {
+  const container = contentSel().taskCont;
   allTasks.forEach((task) => {
     const taskName = task.getName();
     const description = task.getDescription();
@@ -82,6 +75,14 @@ const appendTaskCardToMain = (currentProject) => {
     container.appendChild(borderDiv);
     container.appendChild(tCard);
   });
+}
+
+const appendTaskCardToMain = (currentProject) => {
+  const container = contentSel().taskCont;
+
+  const allTasks = currentProject.getAllThisTasks();
+  container.replaceChildren();
+  loopAndAppend(allTasks);
 };
 
 // interprets the signal so i can call the real function
@@ -101,5 +102,3 @@ export {
   getCurrentProjectAndAppendTaskMain,
   appendTaskCardToMain,
 };
-
-

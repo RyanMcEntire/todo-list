@@ -3,6 +3,7 @@ import Element from '../model/elementMaker';
 import {
   handleTaskCardClick,
   deleteTaskMain,
+  saveEdit,
 } from '../controllers/dynamicClickHandler';
 // import processProjectCardClick from '../controllers/dynamicClickHandler';
 
@@ -80,6 +81,7 @@ function makeTaskCardMain(
           new Element('div')
             .addAttributes({
               class: 'taskCardMainTextArea',
+              'data-taskcardmaintext': taskName,
             })
             .addEventListener('click', (e) => handleTaskCardClick(e))
             .addChild(
@@ -130,4 +132,34 @@ function makeTaskCardMain(
     .build();
 }
 
-export { makeProjectCard, makeTaskCardMain };
+function createSaveButton(taskName) {
+  return new Element('button')
+    .addAttributes({
+      class: 'saveButton',
+      id: 'saveButton',
+      'data-savebutton': taskName,
+    })
+    .addText('Save')
+    .addEventListener('submit', () => saveEdit())
+    .build();
+}
+
+function createCancelButton() {
+  return (
+    new Element('button')
+      .addAttributes({
+        class: 'cancelButton',
+        id: 'cancelButton',
+      })
+      .addText('Cancel')
+      // .addEventListener('click', () => cancelEdit())
+      .build()
+  );
+}
+
+export {
+  makeProjectCard,
+  makeTaskCardMain,
+  createSaveButton,
+  createCancelButton,
+};

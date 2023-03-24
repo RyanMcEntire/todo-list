@@ -23,6 +23,7 @@ form {
 
 h2 {
   margin: 0;
+  color: @blue1;
 }
 
 .header {
@@ -40,8 +41,23 @@ h2 {
   }
 }
 
+button {
+  border-color: @green2;
+  border-width: 1px;
+  border-radius: 7px;
+  background-color: @blue5;
+  color: #e1e6cf;
+}
+
 .newTaskForm {
   padding: 1rem;
+  border-top-left-radius: 0.4rem;
+  border-top-right-radius: 0.4rem;
+}
+
+#newTask {
+  height: 2rem;
+  width: 6rem;
 }
 
 .taskTextFields {
@@ -63,6 +79,13 @@ input[type='date'] {
 
 #taskDescription {
   height: 5.5rem;
+}
+
+#completedContainer {
+  border: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .priorityFieldSet {
@@ -90,6 +113,13 @@ legend {
 .dateAndPriorityArea {
   display: flex;
   align-items: end;
+}
+
+input,
+textarea {
+  border-radius: 0.4rem;
+  border-width: 1px;
+  background-color: #cdf8fa;
 }
 
 input[type='radio'] {
@@ -154,7 +184,12 @@ h2 {
     padding: 0rem 0rem 0rem 1rem;
     margin: 0;
     text-align: start;
+    color: #e1e6cf;
   }
+}
+
+#createTaskButton {
+  background-color: @blue2;
 }
 
 #newProjectForm {
@@ -205,6 +240,7 @@ h2 {
     text-align: center;
     background-color: @green4;
     align-self: stretch;
+    color: @blue1;
     &:hover {
       background-color: @green5;
     }
@@ -295,7 +331,7 @@ h2 {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-width: 16rem; 
+  max-width: 16rem;
 }
 
 .taskLeftSide,
@@ -328,9 +364,35 @@ h2 {
   border-radius: 1rem;
   flex-shrink: 0;
 }
+.completeAndEdit {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.saveButton,
+.cancelButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0.4rem;
+  width: 5rem;
+  height: 2.5rem;
+  color: @blue2;
+}
+.saveButton {
+  background-color: #76c893;
+}
+
+.cancelButton {
+  background-color: #d3b77c;
+}
 
 .taskFormClose {
   align-self: flex-start;
+  background-color: @blue2;
 }
 
 #consoleTable {

@@ -22,6 +22,8 @@ class Manager {
     this.currentProject.push(project);
   }
 
+  // i've misnamed this. it just retrieves an array with the name
+  // I can save a lot of spaghetti if I return the right type of value
   getCurrentProject() {
     return this.currentProject;
   }
