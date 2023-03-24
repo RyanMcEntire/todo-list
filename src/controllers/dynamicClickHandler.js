@@ -1,3 +1,4 @@
+/* eslint-disable no-plusplus */
 /* eslint-disable import/no-cycle */
 import Storage from '../model/storage';
 import { makeTaskForm } from '../dom/formElements';
@@ -6,6 +7,7 @@ import {
   getCurrentProjectAndAppendTaskMain,
   appendTaskCardToMain,
 } from './staticClickHandlers';
+import { eleId } from '../dom/eleSelectors';
 
 // functions that handle project button click events
 
@@ -57,17 +59,7 @@ const updateProjectEventListeners = () => {
   });
 };
 
-function eleId() {
-  const name = document.getElementById('taskName');
-  const description = document.getElementById('taskDescription');
-  const due = document.getElementById('taskDue');
-  const priority = document.getElementsByName('priority');
-  const low = document.getElementById('low');
-  const normal = document.getElementById('normal');
-  const high = document.getElementById('high');
-  const completed = document.getElementById('completed');
-  return { name, description, due, priority, normal, low, high, completed };
-}
+
 
 function whichPriorityChecked() {
   const ids = eleId();
@@ -77,7 +69,10 @@ function whichPriorityChecked() {
       return buttons[i].name;
     }
   }
+  return null;
 }
+
+function appendTaskEditButtons() {}
 
 function initEditTask(projectName, taskName) {
   const manager = Storage.getManager();
@@ -111,8 +106,7 @@ function initEditTask(projectName, taskName) {
   if (ids.high.name === whichPriorityChecked()) {
     ids.high.checked = true;
   }
-  
-  
+
   // i could make this some kind of module next time
   // next project I'll work out how to do that
 
