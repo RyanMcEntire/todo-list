@@ -70,4 +70,13 @@ export default class Storage {
       .setTaskName(newTaskName);
     Storage.saveManager(manager);
   }
+
+  static editTask(projectName, oldTaskName, newTask) {
+    const manager = Storage.getManager();
+    const project = manager.getProject(projectName);
+    const oldTaskIndex = project.indexOf(oldTaskName);
+    project.deleteTaskFromProject(oldTaskName);
+    project.splice(oldTaskIndex, 0, newTask);
+    Storage.saveManager(manager);
+  }
 }

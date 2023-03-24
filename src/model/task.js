@@ -15,6 +15,10 @@ export default class Task {
     this.name = name;
   }
 
+  getDescription() {
+    return this.description;
+  }
+
   setDateDue(dueDate) {
     this.due = dueDate;
   }

@@ -25,13 +25,13 @@ class Project {
   }
 
   getTask(taskName) {
-    return this.tasks.find((task) => task.getTaskName() === taskName);
+    return this.tasks.find((task) => task.getName() === taskName);
   }
 
   getAllThisTasks = () => this.tasks;
 
   hasTask(newTask) {
-    return this.tasks.some((task) => task.id === newTask.id);
+    return this.tasks.some((task) => task.name === newTask.name);
   }
 
   getNameOfProject = () => this.projectName;
