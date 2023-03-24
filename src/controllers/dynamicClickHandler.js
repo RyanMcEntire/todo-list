@@ -21,9 +21,6 @@ function appendTaskForm(element) {
   if (!taskFormContainer.contains(taskForm)) {
     taskFormContainer.appendChild(element);
   }
-  // while (parentElement.hasChildNodes()) parentElement.firstChild.remove();
-
-  // parentElement.appendChild(element);
 }
 
 function newTaskOnProjectClick(projectName) {
@@ -64,11 +61,22 @@ function eleId() {
   const name = document.getElementById('taskName');
   const description = document.getElementById('taskDescription');
   const due = document.getElementById('taskDue');
+  const priority = document.getElementsByName('priority');
   const low = document.getElementById('low');
   const normal = document.getElementById('normal');
   const high = document.getElementById('high');
   const completed = document.getElementById('completed');
-  return { name, description, due, normal, low, high, completed };
+  return { name, description, due, priority, normal, low, high, completed };
+}
+
+function whichPriorityChecked() {
+  const ids = eleId();
+  const buttons = ids.priority;
+  for (let i = 0; i < buttons.length; i++) {
+    if (buttons[i].checked === true) {
+      return buttons[i].name;
+    }
+  }
 }
 
 function initEditTask(projectName, taskName) {
@@ -78,9 +86,33 @@ function initEditTask(projectName, taskName) {
   console.log('task object => ', task);
   appendTaskForm(makeTaskForm());
   const ids = eleId();
-  console.log(ids.name, ids.description, ids.due, ids.priority, ids.completed);
+  console.log(
+    ids.due,
+    ids.priority,
+    ids.high,
+    ids.normal,
+    ids.low,
+    ids.completed
+  );
   ids.name.value = task.getName();
-  ids.description.value = task.getDe
+  console.log('Name => ', task.getName());
+  ids.description.value = task.getDescription();
+  console.log('Description => ', task.getDescription());
+  ids.due.value = task.getDateDue();
+  console.log('Date Due => ', task.getDateDue());
+  ids.completed.checked = task.getCompleted();
+  console.log('Completed => ', task.getCompleted());
+  if (ids.low.name === whichPriorityChecked()) {
+    ids.low.checked = true;
+  }
+  if (ids.normal.name === whichPriorityChecked()) {
+    ids.normal.checked = true;
+  }
+  if (ids.high.name === whichPriorityChecked()) {
+    ids.high.checked = true;
+  }
+  
+  
   // i could make this some kind of module next time
   // next project I'll work out how to do that
 
