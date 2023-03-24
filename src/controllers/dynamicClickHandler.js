@@ -7,7 +7,7 @@ import {
   getCurrentProjectAndAppendTaskMain,
   appendTaskCardToMain,
 } from './staticClickHandlers';
-import { eleId } from '../dom/eleSelectors';
+import { taskFormSelectors } from '../dom/selectors';
 
 // functions that handle project button click events
 
@@ -59,10 +59,8 @@ const updateProjectEventListeners = () => {
   });
 };
 
-
-
 function whichPriorityChecked() {
-  const ids = eleId();
+  const ids = taskFormSelectors();
   const buttons = ids.priority;
   for (let i = 0; i < buttons.length; i++) {
     if (buttons[i].checked === true) {
@@ -72,31 +70,21 @@ function whichPriorityChecked() {
   return null;
 }
 
-function appendTaskEditButtons() {}
+function appendTaskEditButtons() {
+  const container = taskFormSelectors().completeAndEdit;
+  console.log('appendButtons > ', container);
+}
 
 function initEditTask(projectName, taskName) {
   const manager = Storage.getManager();
   const project = manager.getProject(projectName);
   const task = project.getTask(taskName);
-  console.log('task object => ', task);
   appendTaskForm(makeTaskForm());
-  const ids = eleId();
-  console.log(
-    ids.due,
-    ids.priority,
-    ids.high,
-    ids.normal,
-    ids.low,
-    ids.completed
-  );
+  const ids = taskFormSelectors();
   ids.name.value = task.getName();
-  console.log('Name => ', task.getName());
   ids.description.value = task.getDescription();
-  console.log('Description => ', task.getDescription());
   ids.due.value = task.getDateDue();
-  console.log('Date Due => ', task.getDateDue());
   ids.completed.checked = task.getCompleted();
-  console.log('Completed => ', task.getCompleted());
   if (ids.low.name === whichPriorityChecked()) {
     ids.low.checked = true;
   }
@@ -106,36 +94,24 @@ function initEditTask(projectName, taskName) {
   if (ids.high.name === whichPriorityChecked()) {
     ids.high.checked = true;
   }
-
-  // i could make this some kind of module next time
-  // next project I'll work out how to do that
-
-  // const name = document.getElementById('name');
-  // const description = document.getElementById('description');
-  // const due = document.getElementById('due');
-  // const priority = document.getElementById('priority');
-  // const completed = document.getElementById('completed');
-  // eleId.name.value = task.getName();
+  appendTaskEditButtons();
 }
 
 const handleTaskCardClick = (e) => {
   const taskName = e.currentTarget.dataset.taskcard;
-  console.log('task name=> ', taskName);
+  e.stopPropagation();
   const projectName = Storage.getManager().getCurrentProjectName();
-
+  console.log('card ', taskName);
   initEditTask(projectName, taskName);
 };
 
 function deleteTaskMain(e) {
-  const taskToDelete = e.target.value;
-
+  const taskToDelete = e.currentTarget.dataset.deletetask;
+  console.log('delete Button ', e.currentTarget.value);
   const manager = Storage.getManager();
   const projectName = manager.getCurrentProjectName();
-  const project = manager.getProject(projectName);
-  console.log(project);
   Storage.removeTask(projectName, taskToDelete);
   const updatedProject = Storage.getManager().getProject(projectName);
-  console.log(updatedProject);
   appendTaskCardToMain(updatedProject);
 }
 

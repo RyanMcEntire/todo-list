@@ -64,12 +64,14 @@ const appendTaskCardToMain = (currentProject) => {
 
   allTasks.forEach((task) => {
     const taskName = task.getName();
+    const description = task.getDescription();
     const completed = task.getCompleted();
     const priority = task.getPriority();
     const dueDate = task.getDateDue();
-    const DueDays = 'REPLACE ME';
+    const DueDays = 'X days';
     const tCard = makeTaskCardMain(
       taskName,
+      description,
       completed,
       priority,
       dueDate,
@@ -99,3 +101,5 @@ export {
   getCurrentProjectAndAppendTaskMain,
   appendTaskCardToMain,
 };
+
+

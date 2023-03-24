@@ -43,14 +43,20 @@ function makeProjectCard(projectName) {
     .build();
 }
 
-function makeTaskCardMain(taskName, completed, priority, dueDate, DueDays) {
+function makeTaskCardMain(
+  taskName,
+  description,
+  completed,
+  priority,
+  dueDate,
+  DueDays
+) {
   return new Element('div')
     .addAttributes({
       class: 'taskCard',
       'data-taskCard': taskName,
       value: taskName,
     })
-    .addEventListener('click', (e) => handleTaskCardClick(e))
     .addChild(
       new Element('div')
         .addAttributes({
@@ -75,7 +81,21 @@ function makeTaskCardMain(taskName, completed, priority, dueDate, DueDays) {
             .addAttributes({
               class: 'taskCardMainTextArea',
             })
-            .addText(taskName)
+            .addEventListener('click', (e) => handleTaskCardClick(e))
+            .addChild(
+              new Element('div')
+                .addAttributes({
+                  class: 'taskCardNameText',
+                })
+                .addText(taskName)
+            )
+            .addChild(
+              new Element('div')
+                .addAttributes({
+                  class: 'taskCardDescription',
+                })
+                .addText(description)
+            )
         )
     )
     .addChild(
@@ -101,7 +121,7 @@ function makeTaskCardMain(taskName, completed, priority, dueDate, DueDays) {
           new Element('button')
             .addAttributes({
               class: 'taskCardMainDelete',
-              value: taskName,
+              'data-deletetask': taskName,
             })
             .addText('x')
             .addEventListener('click', (e) => deleteTaskMain(e))
