@@ -17,7 +17,7 @@ function query(q) {
 // Now i added it at the end of the project to try it out.
 // and its fun! used at dynamicClickHandler.js line 63 & 82
 // I'll have to give it a shot next project.
-const taskFormSel = (() => {
+function taskFormSel() {
   const taskFormCont = byId('taskFormContainer');
   const taskForm = byId('newTaskForm');
   const name = byId('taskName');
@@ -54,7 +54,7 @@ const taskFormSel = (() => {
     priorityStat,
     completedStat,
   };
-})();
+};
 
 function contentSel() {
   const taskCont = byId('taskCardContainer');
@@ -63,7 +63,7 @@ function contentSel() {
 
 function sidebarSel() {
   const projArea = byId('projectDisplayArea');
-  
+
   return { projArea };
 }
 

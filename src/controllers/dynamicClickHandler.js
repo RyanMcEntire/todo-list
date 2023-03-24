@@ -20,8 +20,11 @@ function updateCurrentProject(projectName) {
 }
 
 function appendTaskForm(element) {
-  const taskFormContainer = document.getElementById('taskFormContainer');
-  const taskForm = document.getElementById('newTaskForm');
+  const ele = taskFormSel();
+  console.log('testies', ele);
+  const taskFormContainer = ele.taskFormCont;
+  const taskForm = ele.taskForm;
+
   if (!taskFormContainer.contains(taskForm)) {
     taskFormContainer.appendChild(element);
   }
@@ -84,8 +87,13 @@ function initEditTask(projectName, taskName) {
   const manager = Storage.getManager();
   const project = manager.getProject(projectName);
   const task = project.getTask(taskName);
+  console.log('test1');
+  // FAILING
   appendTaskForm(makeTaskForm());
+  // FAILING
+  console.log('test2');
   const ids = taskFormSel();
+
   ids.name.value = task.getName();
   ids.description.value = task.getDescription();
   ids.due.value = task.getDateDue();
@@ -107,20 +115,19 @@ function initEditTask(projectName, taskName) {
 function saveEdit() {
   const manager = Storage.getManager();
   const projectName = manager.getCurrentProjectName();
-  const project = manager.getProject(projectName)
+  const project = manager.getProject(projectName);
   const oldTask = initEditTask().taskName;
   const newTask = getTaskFromInput();
   Storage.editTask(projectName, oldTask, newTask);
-  appendTaskCardToMain(project)
+  appendTaskCardToMain(project);
 }
 
 function cancelEdit() {
-  // taskFormSel().taskFormCont.remove();
+  taskFormSel().taskFormCont.remove();
 }
 
 const handleTaskCardClick = (e) => {
   const taskName = e.currentTarget.dataset.taskcardmaintext;
-  e.stopPropagation();
   const projectName = Storage.getManager().getCurrentProjectName();
   initEditTask(projectName, taskName);
 };

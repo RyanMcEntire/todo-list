@@ -308,21 +308,31 @@ h2 {
 .taskCard {
   display: flex;
   height: 1.5rem;
-  justify-content: space-between;
   padding: 0rem 1rem;
   cursor: default;
+  input {
+    height: 1rem;
+  }
 }
 
 .taskCardMainTextArea {
-  display: flex;
+  display: inline-grid;
+  grid-template-columns: 5fr 6fr;
   align-items: center;
+  gap: 0.5rem; 
   &:hover {
     background-color: @green5;
   }
 }
 
 .taskCardNameText {
-  width: 16rem;
+  display: block;
+  min-width: 12rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  border-right: 1px solid #76c89380;
+  
 }
 
 .taskCardDescription {
@@ -331,14 +341,21 @@ h2 {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-width: 16rem;
 }
 
-.taskLeftSide,
-.taskRightSide {
-  display: flex;
-  gap: 0.4rem;
+.taskLeftSide {
+  display: inline-grid;
+  width: 100%;
+  grid-template-columns: 1fr 1fr 20fr;
+  column-gap: 0.15rem;
   align-items: center;
+}
+
+.taskRightSide {
+  display: inline-grid;
+  grid-template-columns: 10fr 4fr 1fr;
+  align-items: center;
+  justify-content: center;
 }
 .taskCardMainDueDate {
   display: flex;
@@ -360,7 +377,7 @@ h2 {
 .taskCardMainPriorityArea {
   display: flex;
   width: 1rem;
-  height: 1rem;
+  height: 0.6rem;
   border-radius: 1rem;
   flex-shrink: 0;
 }
