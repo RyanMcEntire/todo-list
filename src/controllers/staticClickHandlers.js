@@ -12,9 +12,9 @@ function clearTaskForm() {
   }
 }
 
-function appendElement(parent, element) {
+function appendElement(parentId, element) {
   clearTaskForm();
-  const parentElement = document.getElementById(parent);
+  const parentElement = document.getElementById(parentId);
   parentElement.appendChild(element);
 }
 
@@ -101,4 +101,5 @@ export {
   closeProjectForm,
   getCurrentProjectAndAppendTaskMain,
   appendTaskCardToMain,
+  clearTaskForm,
 };

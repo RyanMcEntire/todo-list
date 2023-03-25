@@ -30,8 +30,7 @@ class Manager {
 
   getCurrentProjectName() {
     console.log(String(this.currentProject));
-    return String(this.currentProject)
-
+    return String(this.currentProject);
   }
 
   removeProject(projectName) {

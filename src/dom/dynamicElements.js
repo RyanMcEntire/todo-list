@@ -140,7 +140,7 @@ function createSaveButton(taskName) {
       'data-savebutton': taskName,
     })
     .addText('Save')
-    .addEventListener('submit', () => saveEdit())
+    .addEventListener('submit', (e) => saveEdit(e))
     .build();
 }
 

@@ -16,7 +16,10 @@ function makeProjectForm() {
         .addChild(new Element('h2').addText('New Project'))
         .addChild(
           new Element('button')
-            .addAttributes({ class: 'projectFormExit', id: 'projectFormExit' })
+            .addAttributes({
+              class: 'projectFormExit',
+              id: 'projectFormExit',
+            })
             .addText('X')
         )
         .addEventListener('click', () => closeProjectForm())
@@ -123,7 +126,10 @@ function makeTaskForm() {
                               class: 'priorityFieldSet',
                             })
                             .addChild(new Element('legend').addText('Priority'))
-                            .addChild(createRadioInput('high', 'priority'))
+                            .addChild(
+                              createRadioInput('high', 'priority'),
+                              false
+                            )
                             .addChild(
                               createRadioInput('normal', 'priority', true)
                             )

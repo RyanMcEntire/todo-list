@@ -12,64 +12,44 @@ function query(q) {
   return element;
 }
 
-// I wanted to make a module like this when I started
-// but i got distracted and never got around to it.
-// Now i added it at the end of the project to try it out.
-// and its fun! used at dynamicClickHandler.js line 63 & 82
-// I'll have to give it a shot next project.
 function taskFormSel() {
-  const taskFormCont = byId('taskFormContainer');
-  const taskForm = byId('newTaskForm');
-  const name = byId('taskName');
-  const description = byId('taskDescription');
-  const due = byId('taskDue');
-  const priority = allByName('priority');
-  const low = byId('low');
-  const normal = byId('normal');
-  const high = byId('high');
-  const completed = byId('completed');
-  const completedContainer = byId('completedContainer');
-  const completeAndEdit = byId('completeAndEdit');
-  const create = byId('createTaskButton');
-  const save = byId('saveButton');
-  const cancel = byId('cancelButton');
-  const priorityStat = query('input[name="priority"]:checked');
-  const completedStat = query('input[name="completed"]');
   return {
-    taskFormCont,
-    taskForm,
-    name,
-    description,
-    due,
-    priority,
-    normal,
-    low,
-    high,
-    completed,
-    completedContainer,
-    completeAndEdit,
-    create,
-    save,
-    cancel,
-    priorityStat,
-    completedStat,
+    taskFormCont: byId('taskFormContainer'),
+    taskForm: byId('newTaskForm'),
+    name: byId('taskName'),
+    description: byId('taskDescription'),
+    due: byId('taskDue'),
+    priority: allByName('priority'),
+    low: byId('low'),
+    normal: byId('normal'),
+    high: byId('high'),
+    completed: byId('completed'),
+    completedContainer: byId('completedContainer'),
+    completeAndEdit: byId('completeAndEdit'),
+    create: byId('createTaskButton'),
+    save: byId('saveButton'),
+    cancel: byId('cancelButton'),
+    priorityStat: query('input[name="priority"]:checked'),
+    completedStat: query('input[name="completed"]'),
   };
-};
+}
 
 function contentSel() {
-  const taskCont = byId('taskCardContainer');
-  return { taskCont };
+  return {
+    taskCont: byId('taskCardContainer'),
+  };
 }
 
 function sidebarSel() {
-  const projArea = byId('projectDisplayArea');
-
-  return { projArea };
+  return {
+    projArea: byId('projectDisplayArea'),
+  };
 }
 
 function upperSel() {
-  const projHeader = byId('projectNameHeader');
-  return { projHeader };
+  return {
+    projHeader: byId('projectNameHeader'),
+  };
 }
 
 export { taskFormSel, contentSel, sidebarSel, upperSel };
