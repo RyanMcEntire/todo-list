@@ -7,6 +7,7 @@ import {
   getCurrentProjectAndAppendTaskMain,
   appendTaskCardToMain,
   clearTaskForm,
+  refreshTaskEditCards,
 } from './staticClickHandlers';
 import { taskFormSel, upperSel, sidebarSel } from '../dom/selectors';
 import { createSaveButton, createCancelButton } from '../dom/dynamicElements';
@@ -34,7 +35,6 @@ function newTaskOnProjectClick(projectName) {
 
 const updateProjectEventListeners = () => {
   const projectDisplayArea = sidebarSel().projArea;
-  console.log('proj display area', projectDisplayArea);
   projectDisplayArea.addEventListener('click', (e) => {
     let projectName = null;
     if (e.target.value === 'projectName') {
@@ -85,23 +85,43 @@ function initEditTask(projectName, taskName) {
   if (ele.high.value === task.getPriority()) {
     ele.high.checked = true;
   }
+
+  // const taskIndex = getIndexOfTask(project, taskName);
   appendTaskEditButtons(taskName);
   ele.create.remove();
   return { taskName };
 }
 
-function saveEdit(e) {
+function getIndexOfTask(project, taskName) {
+  const tasks = project.getAllThisTasks();
+  const taskIndex = tasks.map((o) => o.name).indexOf(taskName);
+  return taskIndex;
+}
+
+function commitTaskEdit(projectName, oldTaskName, taskIndex, newTask) {
+  console.table('before remove ', Storage.getManager().getAllProjects());
+  Storage.removeTask(projectName, oldTaskName);
+  console.table('after remove ', Storage.getManager().getAllProjects());
+  Storage.addTaskAt(projectName, taskIndex, newTask);
+  console.table('after add ', Storage.getManager().getAllProjects());
+}
+
+function saveEdit(e, oldTaskName) {
   e.preventDefault();
+  console.log('save button clicked');
   const manager = Storage.getManager();
   const projectName = manager.getCurrentProjectName();
   const project = manager.getProject(projectName);
-  const oldTask = initEditTask().taskName;
+  const taskIndex = getIndexOfTask(project, oldTaskName);
   const newTask = getTaskFromInput();
-  Storage.editTask(project, oldTask, newTask);
-  appendTaskCardToMain(project);
+  commitTaskEdit(projectName, oldTaskName, taskIndex, newTask);
+  console.log('new task ', newTask);
+  // Storage.editTask(project, oldTask, newTask);
+  refreshTaskEditCards();
 }
 
-function cancelEdit() {
+function cancelEdit(e) {
+  e.preventDefault();
   taskFormSel().taskFormCont.remove();
 }
 
@@ -128,7 +148,3 @@ export {
   saveEdit,
   cancelEdit,
 };
-
-for (let i = 0; i < 5; i++) {
-  // code here
-}

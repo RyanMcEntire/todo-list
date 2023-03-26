@@ -4,7 +4,9 @@ import {
   handleTaskCardClick,
   deleteTaskMain,
   saveEdit,
+  cancelEdit,
 } from '../controllers/dynamicClickHandler';
+import { clearTaskForm } from '../controllers/staticClickHandlers';
 // import processProjectCardClick from '../controllers/dynamicClickHandler';
 
 function makeProjectCard(projectName) {
@@ -135,26 +137,26 @@ function makeTaskCardMain(
 function createSaveButton(taskName) {
   return new Element('button')
     .addAttributes({
+      style: 'button',
       class: 'saveButton',
       id: 'saveButton',
       'data-savebutton': taskName,
     })
     .addText('Save')
-    .addEventListener('submit', (e) => saveEdit(e))
+    .addEventListener('click', (e) => saveEdit(e, taskName))
     .build();
 }
 
 function createCancelButton() {
-  return (
-    new Element('button')
-      .addAttributes({
-        class: 'cancelButton',
-        id: 'cancelButton',
-      })
-      .addText('Cancel')
-      // .addEventListener('click', () => cancelEdit())
-      .build()
-  );
+  return new Element('button')
+    .addAttributes({
+      style: 'button',
+      class: 'cancelButton',
+      id: 'cancelButton',
+    })
+    .addText('Cancel')
+    .addEventListener('click', (e) => clearTaskForm(e))
+    .build();
 }
 
 export {

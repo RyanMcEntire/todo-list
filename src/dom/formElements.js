@@ -4,7 +4,10 @@ import {
   newTaskLogistics,
 } from '../controllers/action-controller';
 import Element from '../model/elementMaker';
-import { closeProjectForm } from '../controllers/staticClickHandlers';
+import {
+  clearTaskForm,
+  closeProjectForm,
+} from '../controllers/staticClickHandlers';
 
 // PROJECT FORM
 function makeProjectForm() {
@@ -36,13 +39,14 @@ function makeProjectForm() {
     .addChild(
       new Element('button')
         .addAttributes({
+          form: 'newProjectForm',
           type: 'submit',
           class: 'formButton',
           id: 'projectNameButton',
         })
         .addText('Create')
     )
-    .addEventListener('submit', (e) => newProjectLogistics(e))
+    .addEventListener('click', (e) => newProjectLogistics(e))
     .build();
 }
 
@@ -57,7 +61,13 @@ function createRadioInput(id, name, isChecked) {
         checked: isChecked,
       })
     )
-    .addChild(new Element('label').addAttributes({ for: id }).addText(id));
+    .addChild(
+      new Element('label')
+        .addAttributes({
+          for: id,
+        })
+        .addText(id)
+    );
 }
 
 // TASK FORM
@@ -172,20 +182,23 @@ function makeTaskForm() {
           new Element('button')
             .addAttributes({
               class: 'taskFormClose',
+              type: 'button',
             })
             .addText('X')
+            .addEventListener('click', (e) => clearTaskForm(e))
         )
     )
     .addChild(
       new Element('button')
         .addAttributes({
-          type: 'submit',
+          type: 'button',
           class: 'formButton',
           id: 'createTaskButton',
         })
         .addText('submit')
+        .addEventListener('click', (e) => newTaskLogistics(e))
     )
-    .addEventListener('submit', (e) => newTaskLogistics(e))
+
     .build();
 }
 

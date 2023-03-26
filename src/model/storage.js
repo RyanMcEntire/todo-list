@@ -56,6 +56,13 @@ export default class Storage {
     Storage.saveManager(manager);
   }
 
+  static addTaskAt(projectName, index, task) {
+    const manager = Storage.getManager();
+    const project = manager.getProject(projectName);
+    project.tasks.splice(index, 0, task);
+    Storage.saveManager();
+  }
+
   static removeTask(projectName, taskName) {
     const manager = Storage.getManager();
     manager.getProject(projectName).deleteTaskFromProject(taskName);
@@ -71,11 +78,15 @@ export default class Storage {
     Storage.saveManager(manager);
   }
 
-  static editTask(project, oldTaskName, newTask) {
-    const oldTaskIndex = project.indexOf(oldTaskName);
-    project.deleteTaskFromProject(oldTaskName);
-    const managerNew = Storage.getManager();
-    project.splice(oldTaskIndex, 0, newTask);
-    Storage.saveManager(managerNew);
-  }
+  // static editTask(projectName, oldTaskName, newTask) {
+  //   const manager = Storage.getManager();
+  //   const project = manager.getProject(projectName);
+  //   const tasks = project.getAllThisTasks();
+  //   const taskIndex = tasks.map((o) => o.name).indexOf(oldTaskName);
+  //   project.deleteTaskFromProject(oldTaskName);
+  //   Storage.saveManager(manager);
+  //   const managerNew = Storage.getManager();
+  //   project.splice(taskIndex, 0, newTask);
+  //   Storage.saveManager(managerNew);
+  // }
 }

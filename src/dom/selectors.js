@@ -55,6 +55,7 @@ function projForm() {
   return {
     projName: query('#projectName'),
     form: byId('newProjectArea'),
+    newForm: byId('newProjectForm')
   };
 }
 

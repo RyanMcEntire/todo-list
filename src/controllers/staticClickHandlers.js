@@ -3,7 +3,7 @@
 import { makeProjectForm, makeTaskForm } from '../dom/formElements';
 import Storage from '../model/storage';
 import { makeProjectCard, makeTaskCardMain } from '../dom/dynamicElements';
-import { sidebarSel, contentSel } from '../dom/selectors';
+import { sidebarSel, contentSel, projForm } from '../dom/selectors';
 
 function clearTaskForm() {
   const container = document.getElementById('taskFormContainer');
@@ -19,7 +19,7 @@ function appendElement(parentId, element) {
 }
 
 function closeProjectForm() {
-  const form = document.getElementById('newProjectForm');
+  const form = projForm().newForm;
   form.remove();
 }
 
@@ -85,6 +85,15 @@ const appendTaskCardToMain = (currentProject) => {
   loopAndAppend(allTasks);
 };
 
+function refreshTaskEditCards() {
+  const manager = Storage.getManager();
+  const currentProject = manager.getCurrentProject();
+  const container = contentSel().taskCont;
+  const allTasks = currentProject.getAllThisTasks();
+  container.replaceChildren();
+  loopAndAppend(allTasks);
+}
+
 // interprets the signal so i can call the real function
 // my spaghetti code scramble got out of hand in the second half
 // instead of reaching for a new class method i went for spaghetti
@@ -102,4 +111,5 @@ export {
   getCurrentProjectAndAppendTaskMain,
   appendTaskCardToMain,
   clearTaskForm,
+  refreshTaskEditCards,
 };
