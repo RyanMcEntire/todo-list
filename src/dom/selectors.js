@@ -51,5 +51,11 @@ function upperSel() {
     projHeader: byId('projectNameHeader'),
   };
 }
+function projForm() {
+  return {
+    projName: query('#projectName'),
+    form: byId('newProjectArea'),
+  };
+}
 
-export { taskFormSel, contentSel, sidebarSel, upperSel };
+export { taskFormSel, contentSel, sidebarSel, upperSel, projForm };

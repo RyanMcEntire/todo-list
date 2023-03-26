@@ -9,10 +9,10 @@ import {
   getCurrentProjectAndAppendTaskMain,
 } from './staticClickHandlers';
 import { updateCurrentProject } from './dynamicClickHandler';
-import { taskFormSel } from '../dom/selectors';
+import { taskFormSel, projForm } from '../dom/selectors';
 
 const getTaskFromInput = () => {
-  const ele = taskFormSel()
+  const ele = taskFormSel();
   const name = ele.name.value;
   const description = ele.description.value;
   const due = ele.due.value;
@@ -35,10 +35,10 @@ const newTaskLogistics = (e) => {
 
 function newProjectLogistics(e) {
   e.preventDefault();
-  const newProjectName = document.querySelector('#projectName').value;
+  const newProjectName = projForm().projName.value;
 
   Storage.addProject(new Project(newProjectName));
-  document.getElementById('newProjectForm').remove();
+  projForm().form.remove();
   Storage.setCurrentProject(newProjectName);
   updateCurrentProject(newProjectName);
   addAllProjectCards();

@@ -8,14 +8,14 @@ import {
   appendTaskCardToMain,
   clearTaskForm,
 } from './staticClickHandlers';
-import { taskFormSel } from '../dom/selectors';
+import { taskFormSel, upperSel, sidebarSel } from '../dom/selectors';
 import { createSaveButton, createCancelButton } from '../dom/dynamicElements';
 import { getTaskFromInput } from './action-controller';
 
 // functions that handle project button click events
 function updateCurrentProject(projectName) {
   Storage.setCurrentProject(projectName);
-  const projectNameHeader = document.getElementById('projectNameHeader');
+  const projectNameHeader = upperSel.projHeader;
   projectNameHeader.innerText = projectName;
 }
 
@@ -33,7 +33,8 @@ function newTaskOnProjectClick(projectName) {
 // click handler for all project cards
 
 const updateProjectEventListeners = () => {
-  const projectDisplayArea = document.getElementById('projectDisplayArea');
+  const projectDisplayArea = sidebarSel().projArea;
+  console.log('proj display area', projectDisplayArea);
   projectDisplayArea.addEventListener('click', (e) => {
     let projectName = null;
     if (e.target.value === 'projectName') {
@@ -69,14 +70,12 @@ function initEditTask(projectName, taskName) {
   const manager = Storage.getManager();
   const project = manager.getProject(projectName);
   const task = project.getTask(taskName);
-  console.log('priority', task.priority);
   appendTaskForm(cont, makeTaskForm());
   const ele = taskFormSel();
   ele.name.value = task.getName();
   ele.description.value = task.getDescription();
   ele.due.value = task.getDateDue();
   ele.completed.checked = task.getCompleted();
-  console.log('low value', ele.low.value);
   if (ele.low.value === task.getPriority()) {
     ele.low.checked = true;
   }
@@ -97,7 +96,6 @@ function saveEdit(e) {
   const projectName = manager.getCurrentProjectName();
   const project = manager.getProject(projectName);
   const oldTask = initEditTask().taskName;
-  console.log('old task name ', oldTask);
   const newTask = getTaskFromInput();
   Storage.editTask(project, oldTask, newTask);
   appendTaskCardToMain(project);
