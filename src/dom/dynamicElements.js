@@ -111,7 +111,7 @@ function makeTaskCardMain(
             .addAttributes({
               class: 'taskCardMainDueDate',
             })
-            .addText(`Due: ${dueDate}`)
+            .addText(dueDate)
         )
         .addChild(
           new Element('div')

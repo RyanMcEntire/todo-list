@@ -99,6 +99,78 @@ function makeContent() {
         .addChild(
           new Element('div')
             .addAttributes({
+              class: 'taskLegend',
+              id: 'taskLegend',
+            })
+            .addChild(
+              new Element('div')
+                .addAttributes({
+                  class: 'taskLeftSide',
+                })
+                .addChild(
+                  new Element('div')
+                    .addAttributes({
+                      class: 'legendCheck',
+                    })
+                    .addText('✔️')
+                )
+                .addChild(
+                  new Element('div').addAttributes({
+                    class: 'legendPriority',
+                  })
+                )
+                .addChild(
+                  new Element('div')
+                    .addAttributes({
+                      class: 'taskCardMainTextArea textAreaLegend',
+                    })
+                    .addChild(
+                      new Element('div')
+                        .addAttributes({
+                          class: 'legendName',
+                        })
+                        .addText('Task Name')
+                    )
+                    .addChild(
+                      new Element('div')
+                        .addAttributes({
+                          class: 'legendDescription',
+                        })
+                        .addText('description')
+                    )
+                )
+            )
+            .addChild(
+              new Element('div')
+                .addAttributes({
+                  class: 'taskRightSide',
+                })
+                .addChild(
+                  new Element('div')
+                    .addAttributes({
+                      class: 'legendDateDue',
+                    })
+                    .addText('Date Due')
+                )
+                .addChild(
+                  new Element('div')
+                    .addAttributes({
+                      class: 'legendDueIn',
+                    })
+                    .addText('Due in')
+                )
+                .addChild(
+                  new Element('div')
+                    .addAttributes({
+                      class: 'legendDelete',
+                    })
+                    .addText('Delete') 
+                )
+            )
+        )
+        .addChild(
+          new Element('div')
+            .addAttributes({
               class: 'taskView',
               id: 'taskView',
             })

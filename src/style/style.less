@@ -49,6 +49,50 @@ button {
   color: #e1e6cf;
 }
 
+.taskLegend {
+  display: flex;
+  height: 1rem;
+  background-color: @green4;
+  color: #797979;
+  column-gap: 0.15rem;
+  padding: 0rem 1rem;
+  cursor: default;
+  font-size: 0.7rem;
+}
+
+.taskCardMainTextArea .textAreaLegend {
+  grid-column-start: 3;
+}
+
+.legendCheck {
+  justify-self: center;
+}
+
+.legendName {
+  display: block;
+  min-width: 12rem;
+}
+
+.legendDescription {
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.legendDateDue {
+  display: flex;
+  width: 140px;
+}
+
+.legendDueIn {
+  display: block;
+}
+
+.legendDelete {
+  justify-self: center; 
+}
+
 .newTaskForm {
   padding: 1rem;
   border-top-left-radius: 0.4rem;
@@ -344,13 +388,14 @@ h2 {
 
 .taskLeftSide {
   display: inline-grid;
-  width: 100%;
+  width: 70%;
   grid-template-columns: 1fr 1fr 20fr;
   column-gap: 0.15rem;
   align-items: center;
 }
 
 .taskRightSide {
+  width: 30%;
   display: inline-grid;
   grid-template-columns: 10fr 4fr 1fr;
   align-items: center;
@@ -359,6 +404,10 @@ h2 {
 .taskCardMainDueDate {
   display: flex;
   width: 140px;
+}
+
+.taskCardMainDueDays {
+  white-space: nowrap;
 }
 
 [data-taskpriority='high'] {
@@ -396,7 +445,7 @@ h2 {
   border-radius: 0.4rem;
   width: 5rem;
   height: 2.5rem;
-  color: @blue1; 
+  color: @blue1;
 }
 .saveButton {
   background-color: #76c893;
