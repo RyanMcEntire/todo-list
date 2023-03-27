@@ -4,7 +4,6 @@ import {
   handleTaskCardClick,
   deleteTaskMain,
   saveEdit,
-  cancelEdit,
 } from '../controllers/dynamicClickHandler';
 import { clearTaskForm } from '../controllers/staticClickHandlers';
 // import processProjectCardClick from '../controllers/dynamicClickHandler';
@@ -20,7 +19,7 @@ function makeProjectCard(projectName) {
       new Element('button')
         .addAttributes({
           class: 'deleteProjectButton',
-          'data-projectDelete': projectName,
+          'data-projectdelete': projectName,
           value: 'projectDelete',
         })
         .addText('X')
@@ -29,7 +28,7 @@ function makeProjectCard(projectName) {
       new Element('button')
         .addAttributes({
           class: 'projectName',
-          'data-projectName': projectName,
+          'data-projectname': projectName,
           value: 'projectName',
         })
         .addText(projectName)
@@ -38,7 +37,7 @@ function makeProjectCard(projectName) {
       new Element('button')
         .addAttributes({
           class: 'projectNewTask',
-          'data-projectNewTask': projectName,
+          'data-projectnewtask': projectName,
           value: 'projectNewTask',
         })
         .addText('+')

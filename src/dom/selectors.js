@@ -37,6 +37,7 @@ function taskFormSel() {
 function contentSel() {
   return {
     taskCont: byId('taskCardContainer'),
+    content: byId('content'),
   };
 }
 
@@ -55,7 +56,7 @@ function projForm() {
   return {
     projName: query('#projectName'),
     form: byId('newProjectArea'),
-    newForm: byId('newProjectForm')
+    newForm: byId('newProjectForm'),
   };
 }
 

@@ -3,13 +3,33 @@
 import { makeProjectForm, makeTaskForm } from '../dom/formElements';
 import Storage from '../model/storage';
 import { makeProjectCard, makeTaskCardMain } from '../dom/dynamicElements';
-import { sidebarSel, contentSel, projForm } from '../dom/selectors';
+import {
+  sidebarSel,
+  contentSel,
+  projForm,
+  taskFormSel,
+} from '../dom/selectors';
 
 function clearTaskForm() {
-  const container = document.getElementById('taskFormContainer');
+  const container = taskFormSel().taskFormCont;
+  console.log('taskform clear button');
   while (container.firstChild) {
     container.removeChild(container.firstChild);
   }
+}
+
+function clearProjectForm() {
+  const container = contentSel().content;
+  const form = projForm().newForm;
+  while (container.contains(form)) {
+    container.removeChild(container.form);
+  }
+}
+
+function appendFormElement(child) {
+  clearProjectForm();
+  const container = contentSel().content;
+  container.appendChild(child);
 }
 
 function appendElement(parentId, element) {
@@ -30,7 +50,7 @@ const consoleTableStorage = () => {
 const processStaticClick = (e) => {
   const eventID = e.target.id;
   const actions = {
-    callNewProjectModal: () => appendElement('content', makeProjectForm()),
+    callNewProjectModal: () => appendFormElement(makeProjectForm()),
     newTask: () => appendElement('taskFormContainer', makeTaskForm()),
     consoleTable: () => consoleTableStorage(),
   };

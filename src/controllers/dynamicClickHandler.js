@@ -16,7 +16,7 @@ import { getTaskFromInput } from './action-controller';
 // functions that handle project button click events
 function updateCurrentProject(projectName) {
   Storage.setCurrentProject(projectName);
-  const projectNameHeader = upperSel.projHeader;
+  const projectNameHeader = upperSel().projHeader;
   projectNameHeader.innerText = projectName;
 }
 
@@ -28,7 +28,7 @@ function appendTaskForm(parent, element) {
 function newTaskOnProjectClick(projectName) {
   updateCurrentProject(projectName);
 
-  appendTaskForm(taskFormSel.taskFormCont, makeTaskForm());
+  appendTaskForm(taskFormSel().taskFormCont, makeTaskForm());
 }
 
 // click handler for all project cards
@@ -38,17 +38,19 @@ const updateProjectEventListeners = () => {
   projectDisplayArea.addEventListener('click', (e) => {
     let projectName = null;
     if (e.target.value === 'projectName') {
-      projectName = e.target.getAttribute('data-projectName');
+      projectName = e.target.dataset.projectname;
       updateCurrentProject(projectName);
       getCurrentProjectAndAppendTaskMain(projectName);
     }
     if (e.target.value === 'projectDelete') {
-      projectName = e.target.getAttribute('data-projectDelete');
+      projectName = e.target.getAttribute('data-projectdelete');
       Storage.removeProject(projectName);
       addAllProjectCards();
     }
     if (e.target.value === 'projectNewTask') {
-      projectName = e.target.getAttribute('data-projectNewTask');
+      console.log('e target value ', e.target.value);
+      projectName = e.target.getAttribute('data-projectnewtask');
+      console.log('newtask get projectName ', projectName);
       newTaskOnProjectClick(projectName);
       getCurrentProjectAndAppendTaskMain(projectName);
     }

@@ -24,8 +24,8 @@ function makeProjectForm() {
               id: 'projectFormExit',
             })
             .addText('X')
+            .addEventListener('click', () => closeProjectForm())
         )
-        .addEventListener('click', () => closeProjectForm())
     )
 
     .addChild(
@@ -45,8 +45,9 @@ function makeProjectForm() {
           id: 'projectNameButton',
         })
         .addText('Create')
+        .addEventListener('click', (e) => newProjectLogistics(e))
     )
-    .addEventListener('click', (e) => newProjectLogistics(e))
+
     .build();
 }
 

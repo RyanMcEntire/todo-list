@@ -39,7 +39,7 @@ function newProjectLogistics(e) {
   const newProjectName = projForm().projName.value;
 
   Storage.addProject(new Project(newProjectName));
-  projForm().form.remove();
+  projForm().newForm.remove();
   Storage.setCurrentProject(newProjectName);
   updateCurrentProject(newProjectName);
   addAllProjectCards();
