@@ -60,7 +60,7 @@ export default class Storage {
     const manager = Storage.getManager();
     const project = manager.getProject(projectName);
     project.tasks.splice(index, 0, task);
-    Storage.saveManager();
+    Storage.saveManager(manager);
   }
 
   static removeTask(projectName, taskName) {

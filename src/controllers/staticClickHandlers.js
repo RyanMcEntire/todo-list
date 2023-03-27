@@ -12,7 +12,6 @@ import {
 
 function clearTaskForm() {
   const container = taskFormSel().taskFormCont;
-  console.log('taskform clear button');
   while (container.firstChild) {
     container.removeChild(container.firstChild);
   }
@@ -107,9 +106,10 @@ const appendTaskCardToMain = (currentProject) => {
 
 function refreshTaskEditCards() {
   const manager = Storage.getManager();
-  const currentProject = manager.getCurrentProject();
+  const currentProject = manager.getCurrentProjectName();
+  const project = manager.getProject(currentProject);
   const container = contentSel().taskCont;
-  const allTasks = currentProject.getAllThisTasks();
+  const allTasks = project.getAllThisTasks();
   container.replaceChildren();
   loopAndAppend(allTasks);
 }

@@ -48,9 +48,7 @@ const updateProjectEventListeners = () => {
       addAllProjectCards();
     }
     if (e.target.value === 'projectNewTask') {
-      console.log('e target value ', e.target.value);
       projectName = e.target.getAttribute('data-projectnewtask');
-      console.log('newtask get projectName ', projectName);
       newTaskOnProjectClick(projectName);
       getCurrentProjectAndAppendTaskMain(projectName);
     }
@@ -101,30 +99,26 @@ function getIndexOfTask(project, taskName) {
 }
 
 function commitTaskEdit(projectName, oldTaskName, taskIndex, newTask) {
-  console.table('before remove ', Storage.getManager().getAllProjects());
   Storage.removeTask(projectName, oldTaskName);
-  console.table('after remove ', Storage.getManager().getAllProjects());
   Storage.addTaskAt(projectName, taskIndex, newTask);
-  console.table('after add ', Storage.getManager().getAllProjects());
 }
 
 function saveEdit(e, oldTaskName) {
   e.preventDefault();
-  console.log('save button clicked');
   const manager = Storage.getManager();
   const projectName = manager.getCurrentProjectName();
   const project = manager.getProject(projectName);
   const taskIndex = getIndexOfTask(project, oldTaskName);
   const newTask = getTaskFromInput();
   commitTaskEdit(projectName, oldTaskName, taskIndex, newTask);
-  console.log('new task ', newTask);
+  taskFormSel().taskForm.remove();
   // Storage.editTask(project, oldTask, newTask);
   refreshTaskEditCards();
 }
 
 function cancelEdit(e) {
   e.preventDefault();
-  taskFormSel().taskFormCont.remove();
+  taskFormSel().taskForm.remove();
 }
 
 const handleTaskCardClick = (e) => {
